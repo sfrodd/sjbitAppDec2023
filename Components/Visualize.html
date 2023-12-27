@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/visualize/visualize.js"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+    <h1>Drop Down</h1>
+    <ul class="dropdown-menu">
+        <li><button id="pdf" class="export" value="pdf">PDF</button></li>
+        <li><button id="xls" class="export" value="xls">Excel</button></li>
+        <li><button id="csv" class="export" value="csv">CSV</button></li>
+        </ul>
+
+        <div id="container"></div>
+       
+        
+<script>
+visualize({
+auth: {
+name: "username",
+password: "password"
+}
+}, function (v) {
+
+//render report from provided resource
+report = v.report({
+container : "#container",
+resource: "E://sjbit/report//LeaveLetter.jrxml",
+error: function(err){
+alert(err.message);
+}
+});
+
+});
+</script>
+
+
+
+
+
+</body>
+</html>

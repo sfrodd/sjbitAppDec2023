@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacLeaveApp" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" uuid="6cb006d3-0a05-4df5-8d45-4f03c76d92dd">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="591"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\sjbit\\images\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select fla.lid, f.fid,dname,designation, f.fname, address, city, ltype, duration, stdate, endate, info, cla,cl,dl,dla,rh,rha,vl,vla from faculty f, facultyleaveapps fla, facultyleave fl,department d where f.fid=fla.fid and f.fid=fl.fid and f.dno=d.dno]]>
+	</queryString>
+	<field name="lid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="designation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="address" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="city" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ltype" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="duration" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="stdate" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="endate" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="info" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cla" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cl" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dl" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dla" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rh" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rha" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vl" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vla" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="rem_leaves" class="java.lang.Number">
+		<variableExpression><![CDATA[$F{cl}-$F{cla}]]></variableExpression>
+	</variable>
+	<group name="FacLeaves">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="94" y="10" width="315" height="24" uuid="92fc1d52-3fb9-4541-8c8a-c19e6a5fd644"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[S.G.Balekundri Institute of Technology]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="486" y="24" width="100" height="20" uuid="5d849ff9-457d-4b33-b5af-94435e3fd99a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="758" splitType="Stretch">
+			<staticText>
+				<reportElement x="72" y="109" width="164" height="35" uuid="0ccdb13f-41f4-417e-8649-beddcca6d91c"/>
+				<textElement textAlignment="Left">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[The Principal, SGBIT, Shivabasav Nagar, Belagavi - 10]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="13" width="100" height="20" uuid="3762d437-63fb-40cc-bc5a-a3a94f679796"/>
+				<text><![CDATA[From :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="64" y="77" width="185" height="1" uuid="1a325755-52dd-43c7-8693-7551220f9520"/>
+			</line>
+			<staticText>
+				<reportElement x="23" y="91" width="100" height="18" uuid="242d347e-3ab6-4258-b4b7-efb8a24b8f62"/>
+				<text><![CDATA[ To,]]></text>
+			</staticText>
+			<line>
+				<reportElement x="64" y="55" width="185" height="1" uuid="9c2c1931-19cd-41e3-bd49-0e91b16b14ee"/>
+			</line>
+			<staticText>
+				<reportElement x="28" y="144" width="100" height="18" uuid="caaf5890-1b08-48fb-bfcd-1719d7e29a32"/>
+				<text><![CDATA[Sir,]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="72" y="36" width="100" height="20" uuid="98f5e08a-0ad7-4f81-903b-1c38d031d366"/>
+				<textFieldExpression><![CDATA[$F{fname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="341" width="525" height="246" uuid="b1f03816-4367-453f-994a-1acf992da576"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[__________________________________________________________
+
+
+__________________________________________________________
+
+Thanking you,				                                                   Yours faithfully,
+
+
+                                                                                                                       (                                   )
+
+1. Recommended/Not Recommended
+2. Alternate arrangements made / will be made / no applicable ( Shown below)
+
+Signature of  H.O.D/ O.S.
+
+____________________ Department                                                          Leave Sanctioned
+
+
+                                                                                                                                  PRINCIPAL      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="290" width="500" height="21" uuid="1345bf5c-d896-49ba-992f-e35e9c3d2d46"/>
+				<text><![CDATA[Casual Leave at Credit Days__________________(To be filled & forwarded by HOD)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="311" width="207" height="20" uuid="7f264b4f-e0e6-4e2e-8669-5cfadb553f2e"/>
+				<text><![CDATA[Name and Postal Address during Leave]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="45" y="182" width="510" height="108" uuid="e0172c44-90c4-4a96-8ca1-b8b090945fee"/>
+				<textElement textAlignment="Justified">
+					<paragraph lineSpacing="Double" spacingBefore="2"/>
+				</textElement>
+				<text><![CDATA[Kindly grant me ___________ for ______________day(s)  on/from______________ to______________________ for following reasons
+a)
+b)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="128" y="182" width="100" height="20" uuid="ed86d99f-38e6-4160-887b-54a7b0f00d5c"/>
+				<textFieldExpression><![CDATA[$F{ltype}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="182" width="100" height="20" uuid="b53b0e7e-d320-4d08-9d95-019c083d838c"/>
+				<textFieldExpression><![CDATA[$F{duration}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="355" y="182" width="100" height="20" uuid="78debc4b-c13c-4c5e-a409-0575393111fc"/>
+				<textFieldExpression><![CDATA[$F{stdate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="64" y="224" width="100" height="20" uuid="ba90de23-c417-439b-bffe-50c38f863298"/>
+				<textFieldExpression><![CDATA[$F{info}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="182" width="100" height="20" uuid="44c04f66-18b3-42ad-9749-ae8df6c25905"/>
+				<textFieldExpression><![CDATA[$F{endate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="331" width="100" height="20" uuid="fd56868d-4ea2-442b-bc7e-a05837a9c853"/>
+				<textFieldExpression><![CDATA[$F{fname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="375" width="100" height="20" uuid="0f4bcf45-33b1-4965-869b-46cbb676891d"/>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="164" y="375" width="100" height="20" uuid="7762ebab-27f5-418a-ae0b-076f7b7c4cab"/>
+				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="526" width="100" height="20" uuid="6897202a-719c-4005-9601-df6888fd7868"/>
+				<textFieldExpression><![CDATA[$F{dname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="58" width="100" height="20" uuid="f6e0be49-f475-42b2-98c5-76bfa3170677"/>
+				<textFieldExpression><![CDATA[$F{designation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="58" width="100" height="20" uuid="e6286843-9d1b-4914-8348-d28afc63ddc3"/>
+				<textFieldExpression><![CDATA[$F{dname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="38" width="100" height="20" uuid="3823d792-87b8-4da3-8483-138e3cff1e7b"/>
+				<textFieldExpression><![CDATA[$F{fid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="290" width="100" height="20" uuid="7d94f386-d349-4a9f-a081-9211111995b3"/>
+				<textFieldExpression><![CDATA[$V{rem_leaves}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="486" y="13" width="60" height="60" uuid="bca9035f-99fc-461d-86e7-feba4317a169"/>
+				<imageExpression><![CDATA["E:\\sjbit\\images\\sgbitlogo.jfif"]]></imageExpression>
+			</image>
+			<subreport>
+				<reportElement x="-18" y="607" width="515" height="100" uuid="56a79f66-f22a-420d-bf9d-f3f5b5fc69b1"/>
+				<subreportParameter name="LID">
+					<subreportParameterExpression><![CDATA[$F{lid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "leaveDetails.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

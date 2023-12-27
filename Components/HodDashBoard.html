@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="../myStyles/beautify.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../myScripts/showStudentData.js"></script>
+
+    
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="wed-container1">
+    <form class="form-control">
+     <div style="display:flex"> 
+    <img style="border-radius:1rem;margin-right:40px;margin-left:20px" src="../images/Faculty/hm.jfif" alt="Hod"></img>  
+    <span style="display:inline-block;width:400px"><h5 style="color:darkcyan;margin-left:15px;">Dr. Halakarnimath, HoD CSE, SGBIT</h5></span>    
+    <img src="../sgbitlogo.jfif" style="margin-left:600px;border-radius:3rem" width="130px" hieght="80x" alt="logo">   
+    </div>
+    <div style="display:flex">
+    <input style="background-color:aqua;color:blue"  id="usn" type="text" class="form-control m-2 w-25" placeholder="Enter USN">
+    <button id="show" class="btn btn-dark m-2">ShowData</button>
+    <button id="logout" style='width:120px;margin-left:50px' class="btn btn-dark m-2">Logout</button>
+    </div>    
+    <table id="std" class="table table-bordered m-2">
+        <thead style="background-color:yellow;color:brown">
+            <tr>
+                <td>USN</td>
+                <td>Name</td>
+                <td>Sem</td>
+                <td>Division</td>
+                <td>AdmType</td>
+                <td>AdmYear</td>
+                <td>TotalFees</td>
+                <td>Inst-I</td>
+                <td>Inst-II</td>
+                <td>Inst-III</td>
+                <td>Fees Paid</td>
+                <td>FeesDue</td>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+    <table id="details" class="table table-bordered m-2 mt-6">
+        <thead style='background-color:orange;color:blueviolet'>
+            <tr>
+                <td>Subject Name</td>
+                <td>SCODE</td>
+                <td>IA1</td>
+                <td>IA2</td>
+                <td>IA3</td>
+                <td>AVG</td>
+                <td>ASS-I</td>
+                <td>CIE</td>
+                <td>SEE</td>
+                <td>GTot</td>
+                <td>Attendance%</td>
+                <td>Faculty InCharge</td>
+            </tr>
+        </thead>
+        <tbody id="tbody1">
+
+        </tbody>
+    </table>
+    <button id="printData" class="btn btn-dark m-3">Print</button>
+    <button id="rollUp" class="btn btn-secondary m-3">RollUP</button>
+    <button id="suballot" class="btn btn-secondary m-3">Faculty-Subject-Allotment</button><!--button id="subjallot" class="btn btn-warning m-3">SubjectAllotment</button></a-->
+    <button id="pendleave" class="btn btn-secondary m-3">PendingLeaves</button>
+    <button id="mis" class="btn btn-warning m-3">MentoringIssues</button>
+    <button id="send" class="btn btn-secondary m-3">SendEmail</button>
+    <div style="display:flex;flex-direction: column;   background-color:aqua;height:auto;width:1250px;padding:5px;border-radius: 1rem;">
+    <ul id="pendingleaves" class="list-group" style="list-style:none;">
+
+    </ul>
+    <ul id="mentoringissues" class="list-group" style="list-style:none;">
+
+    </ul>
+    </div>
+    
+</form>
+</div>
+</body>
+</html>

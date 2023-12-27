@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+   
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../node_modules/html2canvas/dist/html2canvas.min.js"></script>
+    <script src="../../node_modules/jspdf/dist/jspdf.min.js"></script>
+    <script src="../../myScripts/AdminScripts/promoteStudents.js"></script>
+    
+    <link rel="stylesheet" href="../../myStyles/beautify.css">
+</head>
+<body>
+    <div  style="display:flex;flex-direction: row;justify-content: space-between;">
+    <h3 style="margin:10px;color:tomato">Promote Students</h3>
+    <div style="display:flex">
+    <div id="counter" class="countX">0</div>
+    <div id="counter1" class="countZ">0</div>
+    </div>
+    </div>
+    <div id="content" class="promoteBox">
+       
+    <select id="branch" class="form-select m-2 w-25">
+        <option selected>Choose Branch</option>
+        <option>CSE</option>
+        <option>ECE</option>
+        <option>EEE</option>
+        <option>CIVIL</option>
+        <option>MECH</option>
+        <option>CSBS</option>
+        <option>AIDS</option> 
+    </select>
+    <select id="fromsem" class="form-select m-2 w-25">
+        <option selected>Choose From Semester</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+    </select>
+    <select id="tosem" class="form-select m-2 w-25">
+        <option selected>Choose To Semester</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+    </select>
+    <select id="fromacadyear" class="form-select m-2 w-50">
+        <option selected>Choose From AcadYear</option>
+        <option>2021-22</option>
+        <option>2022-23</option>
+        <option>2023-24</option>
+        <option>2024-25</option>
+        <option>2025-26</option>
+        <option>2026-27</option>
+        <option>2028-29</option>
+        <option>2029-30</option>
+        <option>2030-31</option>
+    </select>
+    <select id="toacadyear" class="form-select m-2 w-50">
+        <option selected>Choose To AcadYear</option>
+        <option>2021-22</option>
+        <option>2022-23</option>
+        <option>2023-24</option>
+        <option>2024-25</option>
+        <option>2025-26</option>
+        <option>2026-27</option>
+        <option>2028-29</option>
+        <option>2029-30</option>
+        <option>2030-31</option>
+    </select>
+    
+    <button id="viewStudents" class="btn btn-primary m-2 w-25">View</button>
+    </div>
+    <div style="display:flex;flex-direction: row;height:auto" >
+    <ul id="studentsList" class="list-group m-1 w-50 ">
+        <li class="list-group-item m-1">Original List</li>
+    </ul>
+    <div style="display:flex;flex-direction: column;">
+    <button id="promoteStudents" class="btn btn-primary m-2" style="width:100px;height:40px">Promote</button>
+    <button id="viewPromoStudents" class="btn btn-primary m-2" style="width:100px;height:40px">View</button>
+    </div>
+    <ul id="promotedList" class="list-group m-1 w-50">
+        <li class="list-group-item m-1">Promted List</li>
+    </ul>  
+    </div>
+    <button id="printDoc" class="btn btn-primary m-2" style="width:100px;height:40px">Download</button>
+</body>
+</html>

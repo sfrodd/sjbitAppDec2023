@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../myStyles/beautify.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script> 
+    <script src="../node_modules/jquery/dist/jquery.session.js"></script>
+    <script src="../myScripts/upload.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-pub">
+      <input id="ptitle" type="text" placeholder="Title of Paper" class="form-control w-75 m-2"></input>
+      <input id="authors" type="text" placeholder="Authors" class="form-control w-75 m-2"></input>
+      <input id="journame" type="text" placeholder="Journal Name" class="form-control w-75 m-2"></input>
+      <input id="publisher" type="text" placeholder="Publisher" class="form-control w-75 m-2"></input>
+      <input id="monthyear" type="text" placeholder="Month,Year" class="form-control w-50 m-2"></input>  
+      <select id="acadyear" class="form-control w-25 m-2">
+        <option selected>Acad-Year</option>
+        <option>2017-18</option>
+        <option>2018-19</option>
+        <option>2019-20</option>
+        <option>2020-21</option>
+        <option>2021-22</option>
+        <option>2022-23</option>
+        <option>2023-24</option>
+      </select>
+      <div style="display:flex;flex-direction:row;">
+      <button id="addj"  style='width:120px;margin-left:50px' class="btn btn-primary m-2 w-25">Add</button>
+      <button id="backx" style='width:120px;margin-left:50px' class="btn btn-dark m-2 w-25">Back</button>
+      </div>
+    </div>
+</body>
+</html>

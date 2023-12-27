@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../myStyles/beautify.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/jquery.session/jquery.session.js"></script>
+    <script src="../myScripts/leavecontrol.js"></script>
+    <script src="../myScripts/formatDate/myFormat.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div style="display:flex;width:1400px;height:80px">
+    <h4 style="margin-left:200px;color:blueviolet;margin-top:10px;">Welcome to Leave Management<span style="margin-left:20px;
+    display:inline-block;border-radius:0.5rem;margin-top:10px;height:40px;padding:5px;width:180px;color:yellow;background-color:orangered;;padding-left:30px" id="facName">UrName here</span></h4>
+    <button id="backHome" class="btn btn-dark" style="width:100px;height:40px;margin:20px">Back</button>
+    <img src="../images/sgbitlogo.jfif" style="margin-top:3px;margin-left:80px;border-radius:3rem" width="80px" hieght="30x" alt="logo">
+    </div>    
+<div class="wed-containerx" style="margin-left:50px;width:1200px;height:1000px"> <!--Orange Div-->
+ <div style="display:flex;flex-direction:column">
+   <div style="display:flex;flex-direction:row">      
+    <form class="form-control">
+
+    <div style="display:flex;flex-direction: column;width:1150px;height:720px;background-color:rgb(142, 250, 216);border-radius:1rem;padding:3px"> <!--Pink Div-->   
+    
+            <table id="leavesTab" style="border-color:red;" class="table-group m-2 w-75">
+                <thead>
+                    <tr >
+                        <td colspan="15" style="text-align:center">Leave Information of<span style="margin-left:10px" id="facName1"></span></td>
+                    </tr>
+                </thead>
+                <tbody id="leaves">
+
+                </tbody>
+                
+        </table>   
+        <select id="ltype" style="color:red;font-weight:bold;width:250px" class="form-select m-2" aria-label="Default select example">
+            <option selected>Choose Leave Type</option>
+            <option id="cl">CL Casual Leave</option>
+            <option id="dl">DL Duty Leave</option>
+            <option id="rl">RH Restricted Holidy</option>
+            <option id="ml">VL Vacation Leave</option> 
+        </select>   
+        
+        <select id="duration" style="color:blueviolet;font-weight:bold;width:250px" class="form-select m-2" aria-label="Default select example">
+            <option selected>Half Day - Morning</option>
+            <option >Half Day - Afternoon</option>
+            <option >One Day</option> 
+            <option >02 Days</option>`
+            <option >03 Days</option> 
+            <option >04 Days</option>`
+            <option >05 Day</option> 
+            <option >06 Days</option>`
+            <option >07 Days</option> 
+            <option >08 Days</option>`
+            <option >09 Day</option> 
+            <option >10 Days</option>`
+            <option >11 Days</option> 
+            <option >12 Days</option>
+            <option >13 Day</option> 
+            <option >14 Days</option>
+            <option >15 Days</option> 
+            <option>N days</option>
+        </select>    
+        <textarea id="info" type="text" style="display:flex;height:120px" class="form-control m-2 w-50" placeholder="Reasons :                                                                                   (a)                                                                                           (b)"></textarea>
+        <input type="date" id="stdate" class="form-control date-input m-2"   style="font-family:Arial, Helvetica, sans-serif;color:orangered;font-weight: bold; width:250px" placeholder="StartDate">
+        <input id="endate"  type="date" style="font-family:Arial, Helvetica, sans-serif;color:orangered;font-weight: bold;  width:250px" class="form-control m-2" placeholder="EndDate">
+         <h5 style="margin-left:10px;font-weight:bold;color:brown">Alernate Arrangements</h5>
+        <div style="display:flex;width:99%">
+        <input id="mydates" type="date" style="font-family:Arial, Helvetica, sans-serif;color:orangered;font-weight: bold;  width:450px" class="form-control m-2" placeholder="EndDate">
+        <select id="classtiming" style="font-family:Arial, Helvetica, sans-serif;color:orangered;font-weight: bold;  width:250px" class="form-control m-2">
+               <option>9-10am</option>
+               <option>10-11am</option>
+               <option>11-12noon</option>
+               <option>12-1pm</option>
+               <option>02-03pm</option>
+               <option>03-04pm</option>
+               <option>04-05pm</option>
+               <option>02-05pm</option>
+               <option>11-02pm</option>
+        </select>
+       
+        <select id="div" style="color:blueviolet;font-weight:bold" class="form-select m-2 w-50" aria-label="Default select example">
+            <option selected>Division</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>  
+        <select id="sem" style="color:blueviolet;font-weight:bold" class="form-select m-2 w-50" aria-label="Default select example">
+            <option selected>Semester</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+        </select> 
+        <select id="sub" style="color:blueviolet;font-weight:bold" class="form-select m-2 w-50" aria-label="Default select example">
+            <option selected>Subject</option>
+        </select> 
+        <select id="LabClass" style="color:blueviolet;font-weight:bold" class="form-select m-2 w-50" aria-label="Default select example">
+            <option selected>Class</option>
+            <option>Lab</option>
+            <option>Other</option>
+        </select>       
+        <select id="Alternate1" style="color:blueviolet;font-weight:bold" class="form-select m-2 w-50" aria-label="Default select example">
+            <option selected>Faculty Engaging class/lab</option>
+        </select>
+        <span style="display:inline-block;width:30px;margin-top:12px;margin-left:10px"><i id="addList"  style="color:red;size:50px;size:50px" class="bi bi-plus-circle mt-3"></i></span>
+    </div> 
+        <ul id="altArrangements" style="list-style:none;" class="list-group w-100">
+         <li style='display:flex;height:50px;color:red;width:730px' class='list-group-item m-2' class="list-group-item">Alternate Arrangements</li>
+
+        </ul>
+        
+        
+        <!--select id="Alternate2" style="color:blueviolet;font-weight:bold" class="form-select m-2 w-50" aria-label="Default select example">
+            <option selected>Faculty Incharge</option>
+        </select--> 
+        
+        <div style="display:flex">
+            <button id="apply" class="btn btn-dark m-2 w-25">Appy</button>
+            <p id="status" style="color:brown;margin-left:20px;margin-top:20px;">Application Status</p>
+        </div>
+        
+      </div> <!--Pink End--> 
+   </form>  
+    </div> <!--End of First Block-->
+    
+        <div>
+            <ul id="lhistory" style="list-style:none;margin:10px;width:700px" class="list-group">
+            <li style="font-weight:bold;color:yellow">Leave Application History</li>
+            </ul>
+        </div>
+        
+   </div> <!--End of Column block -->   
+       
+</div> <!--OrangeEnd-->
+ 
+</body>
+</html>

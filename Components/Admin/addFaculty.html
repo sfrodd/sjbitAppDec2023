@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../myStyles/beautify.css">
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script> 
+    <script src="../../node_modules/jquery/dist/jquery.session.js"></script>
+    <script src="../../myScripts/addFaculty.js"></script>
+</head>
+<body>
+    <div class="container-pub">
+        <h3 style="color:cyan;margin:20px">Add New Faculty Info</h3>
+        <input id="facId" type="text" placeholder="FacID" class="form-control w-25" style="margin-left:60px;margin-bottom:10px"></input>
+        <input id="fname" type="text" placeholder="First Name" class="form-control w-75" style="margin-left:60px;margin-bottom:10px"></input>
+        <input id="lname" type="text" placeholder="Last Name" class="form-control w-75" style="margin-left:60px;margin-bottom:10px"></input>
+        <div style="display:flex;flex-direction: row;">
+        <label class="form-check-label" for="flexRadioDefault1" style="color:beige;font-weight: bold;">
+            DoB
+          </label>
+        <input id="dob" type="date" placeholder="DOB" class="form-control w-50 m-2"></input>
+        </div>
+    
+        <div style="display:flex; flex-direction: row;margin-left:10px">
+            <input class="form-check-input" type="radio" name="gender" value="Male" id="Male" style="margin-left:60px;margin-bottom:10px;margin-top:10px">
+            <label class="form-check-label" for="flexRadioDefault1" style="color:beige;font-weight: bold;">
+            Male
+            </label>  
+            <input class="form-check-input" type="radio" name="gender" value="Female" id="Female" style="margin-left:60px;margin-bottom:10px;margin-top:10px" > 
+            <label class="form-check-label" for="flexRadioDefault1" style="color:beige;font-weight: bold;">
+              Female
+            </label>
+            </div>
+            <div style="display:flex;flex-direction: row;">
+            <label class="form-check-label" for="flexRadioDefault1" style="color:beige;font-weight: bold;">
+                DoJ
+              </label>
+            <input id="doj" type="date" placeholder="DOJ" class="form-control w-50 m-2"></input>  
+            </div>
+        <select id="designation" type="text" placeholder="Publisher" class="form-control w-50" style="margin-left:60px;margin-bottom:10px">
+          <option selected>Designation</option>
+          <option>Asst. Professor</option>
+          <option>Assoc. Professor</option>
+          <option>Professor</option>
+          <option>Asst. Instructor</option>
+          <option>Instructor</option>
+          <option>System Administrato</option>
+        </select>
+        <select id="branch" class="form-control w-25" style="margin-left:60px;margin-bottom:10px">
+          <option selected>Department</option>
+          <option>CSE</option>
+          <option>ECE</option>
+          <option>EEE</option>
+          <option>CIVIL</option>
+          <option>MECH</option>
+          <option>AIDS</option>
+          <option>CSBS</option>
+        </select>
+        <input type="email" placeholder="Email" id="emailid" class="form-control w-50" style="margin-left:60px;margin-bottom:10px;margin-top:10px">
+        <input type="text" placeholder="CellNumber" id="cellnum" class="form-control w-50" style="margin-left:60px;margin-bottom:10px;margin-top:10px">  
+        <div style="display:flex;flex-direction:row;justify-content: space-around;">
+        <button id="addfac"  class="btn btn-primary w-25" style="margin-left:10px;margin-bottom:10px;margin-top:10px">Add</button>
+        <button id="updatefac"  class="btn btn-primary w-25" style="margin-left:0px;margin-bottom:10px;margin-top:10px">Update</button>
+        <button id="backy" style='width:80px;margin-left:10px;height:40px;margin-top: 10px;' class="btn btn-dark w-25" style="margin-bottom:10px;margin-top:10px">Back</button>
+        </div>
+      </div>
+    
+</body>
+</html>

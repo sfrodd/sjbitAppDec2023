@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../myScripts/AdminScripts/transferFromMaster.js"></script>
+</head>
+<body>
+    <div style="margin:20px;padding:10px;border-color: cadetblue;border-style: solid;height:auto;border-width: 5px;border-radius: 5px;">
+    <h3 style="color:red;margin:10px">Transfer From Master - to - Ist Semester</h3>
+    <select id="acadyear" class="form-select m-2 w-25">
+        <option selected>AcademicYear</option>
+        <option>2021-22</option>
+        <option>2022-23</option>
+        <option>2023-24</option>
+        <option>2024-25</option>
+    </select>
+    <button id="transfer" class="btn btn-primary m-2">Transfer</button>
+    <div style="display:flex;flex-direction: row;">
+    
+    <div style="width:40%">
+    <h3 style="color:cornflowerblue;margin:10px">Assign Divisions</h3>
+    <select id="semester" class="form-select m-2 w-50">
+        <option selected>Semester</option>
+        <option>1</option>
+        <option>3</option>
+        <option>5</option>
+        <option>7</option>
+    </select>
+    <select id="acadyear1" class="form-select m-2 w-50">
+        <option selected>AcadYear</option>
+        <option>2020-21</option>
+        <option>2021-22</option>
+        <option>2022-23</option>
+        <option>2023-24</option>
+        <option>2024-25</option>
+        <option>2026-27</option>
+        <option>2027-28</option>
+    </select>    
+    <select id="fromUSN" class="form-select m-2 w-50">
+        <option selected>Start USN</option>
+    </select>
+    <select id="toUSN" class="form-select m-2 w-50">
+        <option selected>End USN</option>
+        
+    </select>
+    <select id="division" class="form-select m-2 w-50">
+        <option selected>Division</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+        <option>E</option>
+        <option>F</option>
+        <option>G</option>
+        <option>H</option>
+        <option>I</option>
+        <option>J</option>
+        <option>K</option>
+        <option>L</option>
+        <option>M</option>
+        <option>N</option>
+        <option>O</option>
+        <option>P</option>
+    </select>
+    <button id="assignDivision" class="btn btn-primary m-2">Assign Division</button>
+    </div>
+    <div style="width:60%">
+        <h3 style="color:olive;margin:10px">Division Info</h3>
+        <ul id="divis" style="list-style: none;" class="list-group m-2 w-100"> 
+         
+        </ul>
+    </div>
+    </div>
+    
+    </div>
+</body>
+</html>

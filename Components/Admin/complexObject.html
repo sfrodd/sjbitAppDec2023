@@ -1,0 +1,18 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extended Example</title>
+</head>
+<body>
+  <form action="/submit-form" method="POST">
+    <input type="text" name="user[name]" value="John Doe">
+    <input type="text" name="user[age]" value="30">
+    <input type="text" name="skills[]" value="JavaScript">
+    <input type="text" name="skills[]" value="Node.js">
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

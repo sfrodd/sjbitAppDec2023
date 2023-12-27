@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../myStyles/beautify.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/jquery.session/jquery.session.js"></script>
+    <script src="../myScripts/processFacSub.js"></script>
+    <script src="../Data/Questionaire.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <h4 style="display:inline-block;background-color:deeppink;
+    padding-left:20px;margin-top:10px;border-radius:0.25rem;color:white;
+    margin-left:20px;width:700px;height:50px;padding-top:3px">
+    <i style="margin-right:20px;color:yellow;" class="bi bi-person-square">
+    </i>Subject Allotment Form - Department of CSE, SGBIT</h4>  
+    <button id="backHome" class="btn btn-dark m-2" style="width:120px">Back</button>
+    <div class="wed-container">      
+      
+    <div style="width:30%">
+    <input id="facName" type="text" class="form-control w-50 m-2"  placeholder="Faculty Name">
+    <select id="sem" class="form-select w-50 m-2">
+        <option selected>Select Sem</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+    </select>
+    <select id="subjects" class="form-select w-75 m-2">
+        <option selected>Subjects</option>
+
+    </select>
+    <select id="exp" class="form-select w-75 m-2">
+        <option selected>Experience in Years</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+        <option>19</option>
+        <option>20</option>
+        <option>>20</option>
+    </select>
+    <select id="ntaught" class="form-select w-75 m-2">
+        <option selected>No. of Times Taught</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+    </select>
+    </div>
+ 
+    <div style="width:98%">
+            <text id="question" style="height:60px;width:1000px" class="form-control m-2"></text>
+            <div style="display:flex;align-items:top;">
+            <textarea id="answer" placeholder="Your answer here" style="width:500px;height:300px" value="" class="form-control mx-1 my-1">
+            </textarea>
+            <!--p style="color:yellow;font-weight: bold;margin-top:10px">Hints</p-->
+            <!--button style="height:75px" class="btn btn-primary m-2 w-25" id="copy"><i id="copy1" style="color:yellow;font-size:40px" class="bi bi-arrow-left-square-fill"></i></button-->
+            <ul id="hints" style="height:300px;list-style: none;" placeholder="" class="form-control my-1 m-2 w-75"></ul> 
+            </div>
+            <button id="next" class="btn btn-outline-light m-2">Next</button>
+            <button id="submit" class="btn btn-outline-light m-2">Submit</button>
+            <button id="prev" class="btn btn-outline-light m-2">Prev</button>
+            <ul id="applied" style="list-style: none;color:brown;background-color: yellow;height:auto;padding:5px;margin:10px" class="list-group">
+                <li><span style='display:inline-block;width:100px;margin-left:30px'>Fid</span><span style='display:inline-block;width:380px'> Scode  SubName</span><span style='display:inline-block;width:100px'>   Exp</span>  <span style='display:list-block;width:200px'> Num. of Times Taught</span></li>
+               </ul>
+        </div>
+     
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../myStyles/beautify.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script> 
+    <script src="../node_modules/jquery/dist/jquery.session.js"></script>
+    <script src="../myScripts/upload.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="wed-container1">
+       <div style="display:flex;flex-direction:column;height:500px;width:600px;border-width:10px;border-color: red ;">
+        <div style="display:inline-block;width:1200px;height:60px">       
+          <h4 style="display:inline-block;background-color:deeppink;padding-left:20px;border-radius:0.25rem;color:white;margin-left:12px;width:1100px;height:50px;padding-top:0px"><i style="margin-right:20px;color:yellow;" class="bi bi-person-square"></i>
+              Welcome Professor :<span style="padding-left:50px;display:inline-block;background-color:aqua;border-radius:0.25rem;margin-top:5px;width:700px; margin-left:20px;
+              color:blue;font-family: Helvetica;font-size: 18px;
+              height:30px;padding-top:5px" id="uname"></span></h4>
+      <div style="display:flex;width:1200px;">
+        <div>
+        <select style="width:300px;height:40px" id="doctype" class="form-select m-1 w-75">
+          <option selected>DocumentType</option>
+          <option>UG-Degree Certificate</option>
+          <option>PG-Degree Certificate</option>
+          <option>PhD-Degree Certificate</option>
+          <option>Appointment-Letters</option>
+          <option>Promotion-Letters</option>
+          <option>Salary-Slip</option>
+          <option>Adhaar-Card</option>
+          <option>PAN-Card</option>
+          <option>Research-Publications</option>
+          <option>WorkShop-Certificates</option>
+          <option>Conference-Certificate</option>
+          <option>Award-Certificate</option>
+          <option>Others</option>
+         </select>
+         </div>
+         <div style="margin-left:10px">
+        <form id="uploadForm1" enctype="multipart/form-data" action="http://localhost:8000/api/uploadFile" method="post">
+        <div style="display:flex;justify-content: flex-start;gap:10px">
+        <input style="width:140px;height:38px" class="form-control w-75 m-1" id="file" type="file" name="myfile"></input>
+        <button type="submit" id="upload1" style="width:160px;height:35px;" class="btn btn-primary my-1 mx-2">Upload</button>
+        <button type="submit" id="backHome2" style="width:160px;height:35px;" class="btn btn-dark my-1 mx-2">Back</button>
+        </div>
+        <!--span style="height:50px" id="status"><progress></progress></span-->
+      </form>
+       </div>
+      </div>
+      <div style="display:flex;gap:20px;width:1100px">
+        <div> 
+      <ul id="dcertandappoint" style="list-style-type:none;width:600px" class="list-group">
+        <li style="width:200px;background-color:yellow;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="color:red;padding:5px;display:inline-block;width:120px;height:40px">Qualifications</span></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020dcert.jpg' download="UGCertificate" target="_blank">B.E. Degree Certificate</a></span><button onclick="window.location.href='../backEnd/uploads/Faculty/1020dcert.jpg'" id="ugdc" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020pgdcert.jpg' download="PGCertificate" target="_blank">M.Tech. Degree Certificate</a></span><button onclick="window.location.href='../backEnd/uploads/Faculty/1020pgdcert.jpg'" id="pgdc" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020phdcert.jpg' download="PhDCertificate" target="_blank">Ph.D. Degree Certificate</a></span><button id="phdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020phdcert.jpg'" class="btn btn-success mx-8 my-2">View</button></li>
+        
+         <li style="width:350px;background-color:yellow;padding-left:15px;margin-top:10px;border-radius:0.5rem;"><span style="color:red;padding:5px;display:inline-block;width:300px;height:40px">Appointmemnt/Promo/Salary Docs</span></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020appointment.png' download="Appointment" target="_blank">Appointment Letter</a></span><button id="ugdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020appointment.png'" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020joing.jpg' download="Joining" target="_blank">Joing Letter</a></span><button id="pgdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020joining.jpg'" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020promo.png' download="Promotion" target="_blank">Promotion Letter</a></span><button id="phdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020dcert.png'" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020salary.png' download="SalarySlip" target="_blank">Salary Slip</a></span><button id="phdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020dcert.png'" class="btn btn-success mx-8 my-2">View</button></li>
+
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020joing.jpg' download="Joining" target="_blank">Adhaar Card</a></span><button id="pgdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020joining.jpg'" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020promo.png' download="Promotion" target="_blank">PAN Card</a></span><button id="phdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020dcert.png'" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020salary.png' download="SalarySlip" target="_blank">Award Certifciate</a></span><button id="phdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020dcert.png'" class="btn btn-success mx-8 my-2">View</button></li>
+
+      </ul>
+      </div>
+      <div>
+      <ul id="pubListandworkconf" style="list-style-type:none;width:1000px" class="list-group">
+        <li id="1" style="width:610px;background-color:yellow;padding-left:15px;margin-top:4px;border-radius:0.5rem;">
+        <span id="apapers" style="color:red;padding:5px;display:inline-block;width:350px;height:40px">Publications 2022-23</span><span style="color:red;padding:5px;display:inline-block;width:110px;height:40px">
+        <button id="addpapers" style="height:30px;width:80px;padding:2px;margin-left:140px" class='btn btn-info'>Add</button></span>
+        <!--button id='p1' style="height:30px;width:100px;padding:2px;margin-left:10px" class='btn btn-success mx-8 my-2'>Download</button--></li>
+  
+      </ul>
+      <ul id="facultyworkshopconf" style="list-style-type:none" class="list-group">
+        <li id="1" style="width:610px;background-color:yellow;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span id="awconf" style="color:red;padding:5px;display:inline-block;width:330px;height:40px">Workshopp/Conf 2022-23</span>
+        <span style="color:red;padding:5px;display:inline-block;width:130px;height:40px">
+        <button id="addworc" style="height:30px;width:80px;padding:2px;margin-left:160px" class='btn btn-info'>Add</button></span>
+        <!--button id='p1' style="height:30px;width:100px;padding:2px;margin-left:10px" class='btn btn-success mx-8 my-2'>Download</button-->
+        </li>
+      </ul>
+
+      <ul id="pubListandworkconf1" style="list-style-type:none;width:1000px" class="list-group">
+        <li id="1" style="width:610px;background-color:yellow;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span id="apapers" style="color:red;padding:5px;display:inline-block;width:350px;height:40px">Publications 2021-22</span><span style="color:red;padding:5px;display:inline-block;width:110px;height:40px">
+        <button id="addpapers2021" style="height:30px;width:80px;padding:2px;margin-left:140px" class='btn btn-info'>Add</button></span>
+        <!--button id='p1' style="height:30px;width:100px;padding:2px;margin-left:10px" class='btn btn-success mx-8 my-2'>Download</button--></li>
+  
+      </ul>
+      <ul id="facultyworkshopconf1" style="list-style-type:none;width:1100px;" class="list-group">
+        <li id="1" style="width:610px;background-color:yellow;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span id="awconf" style="color:red;padding:5px;display:inline-block;width:330px;height:40px">Workshopp/Conf 2021-22</span><span style="color:red;padding:5px;display:inline-block;width:130px;height:40px">
+        <button id="addworc2021" style="height:30px;width:80px;padding:2px;margin-left:160px" class='btn btn-info'>Add</button></span>
+        <!--button id='p1' style="height:30px;width:100px;padding:2px;margin-left:10px" class='btn btn-success mx-8 my-2'>Download</button-->
+        </li>
+      </ul>
+
+      <ul id="pubListandworkconf2" style="list-style-type:none;width:1000px" class="list-group">
+        <li id="1" style="width:610px;background-color:yellow;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span id="apapers" style="color:red;padding:5px;display:inline-block;width:350px;height:40px">Publications 2020-21</span><span style="color:red;padding:5px;display:inline-block;width:110px;height:40px">
+        <button id="addpapers2020" style="height:30px;width:80px;padding:2px;margin-left:140px" class='btn btn-info'>Add</button></span>
+        <!--button id='p1' style="height:30px;width:100px;padding:2px;margin-left:10px" class='btn btn-success mx-8 my-2'>Download</button--></li>
+  
+      </ul>
+      <ul id="facultyworkshopconf2" style="list-style-type:none" class="list-group">
+        <li id="1" style="width:610px;background-color:yellow;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span id="awconf" style="color:red;padding:5px;display:inline-block;width:330px;height:40px">Workshopp/Conf 2020-21</span><span style="color:red;padding:5px;display:inline-block;width:130px;height:40px">
+        <button id="addworc2020" style="height:30px;width:80px;padding:2px;margin-left:160px" class='btn btn-info'>Add</button></span>
+        <!--button id='p1' style="height:30px;width:100px;padding:2px;margin-left:10px" class='btn btn-success mx-8 my-2'>Download</button-->
+        </li>
+      </ul>
+      </div>
+      <!--ul id="wconf" style="list-style-type:none" class="list-group">
+        <li id="5" style="width:470px;background-color:yellow;padding-left:15px;margin-top:10px;border-radius:0.5rem;"><span style="color:red;padding:5px;display:inline-block;width:700px;height:40px">Workshop/Conference 2020-21<button id="addworkconf" style="height:30px;width:120px;padding:2px" class='btn btn-info mx-5'>Add</button></span></li>
+        
+      </ul-->
+      
+  </div>
+  </div>
+</div>
+</body>
+</html>

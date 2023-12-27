@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="leaveDetails" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="08af5ef2-e834-4078-85c0-ac7ccd39cd76">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[135]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from leavearrangements where lid=$P{LID}]]>
+	</queryString>
+	<field name="lid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="arrdate" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="atime" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="classorlab" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="division" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sem" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subject" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<rectangle>
+				<reportElement x="53" y="0" width="492" height="25" uuid="a46822d6-458c-4806-8c7d-9f8c7e95c76b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="193" y="0" width="100" height="20" uuid="09158b8c-ea2a-4573-9e01-35e227940faf"/>
+				<text><![CDATA[Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="0" width="100" height="20" uuid="4b1a5576-789f-4eda-b4c5-898153e7a95c"/>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="0" width="100" height="20" uuid="3127db81-3226-4ced-906f-98796e579216"/>
+				<text><![CDATA[Class /  Laboratory]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="445" y="0" width="100" height="20" uuid="c9136f0f-ffa1-477f-bf42-30d5f875dac7"/>
+				<text><![CDATA[Faculty Incharge]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<rectangle>
+				<reportElement x="53" y="1" width="492" height="25" uuid="fc3a465f-b55f-4a0e-acbd-6c4924685355"/>
+			</rectangle>
+			<textField>
+				<reportElement x="193" y="6" width="100" height="20" uuid="3ba0b822-8c8e-4f10-9905-34cb185404af"/>
+				<textFieldExpression><![CDATA[$F{atime}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="75" y="6" width="100" height="20" uuid="72cecf5e-591e-4c33-979f-4b1beeae96ce"/>
+				<textFieldExpression><![CDATA[$F{arrdate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="6" width="100" height="20" uuid="04be24e3-0f82-4a5a-ae17-96301567c5ad"/>
+				<textFieldExpression><![CDATA[$F{classorlab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="6" width="100" height="20" uuid="213f2105-6e24-49df-af0d-07882a06e11f"/>
+				<textFieldExpression><![CDATA[$F{fname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

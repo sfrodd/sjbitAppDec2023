@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LeaveLetter" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="39b0d590-6558-4ba2-8bed-0f26b7f0fb79">
+	<property name="ireport.zoom" value="1.9965000000000006"/>
+	<property name="ireport.x" value="630"/>
+	<property name="ireport.y" value="1486"/>
+	<parameter name="facId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1020]]></defaultValueExpression>
+	</parameter>
+	<parameter name="eee" class="java.sql.Time">
+		<defaultValueExpression><![CDATA[6/6/2020]]></defaultValueExpression>
+	</parameter>
+	<parameter name="lid" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     faculty.`fid` AS faculty_fid,
+     faculty.`fname` AS faculty_fname,
+     faculty.`lname` AS faculty_lname,
+     faculty.`gender` AS faculty_gender,
+     faculty.`dno` AS faculty_dno,
+     faculty.`designation` AS faculty_designation,
+     facultyleave.`fid` AS facultyleave_fid,
+     facultyleave.`cl` AS facultyleave_cl,
+     facultyleave.`cla` AS facultyleave_cla,
+     facultyleave.`dl` AS facultyleave_dl,
+     facultyleave.`dla` AS facultyleave_dla,
+     facultyleave.`rh` AS facultyleave_rh,
+     facultyleave.`rha` AS facultyleave_rha,
+     facultyleave.`vl` AS facultyleave_vl,
+     facultyleave.`vla` AS facultyleave_vla,
+     facultyleave.`acadyear` AS facultyleave_acadyear,
+     department.`dno` AS department_dno,
+     department.`dname` AS department_dname,
+     department.`dloc` AS department_dloc,
+     department.`headid` AS department_headid,
+     facultyleaveapps.`fname` AS facultyleaveapps_fname,
+     facultyleaveapps.`ltype` AS facultyleaveapps_ltype,
+     facultyleaveapps.`duration` AS facultyleaveapps_duration,
+     facultyleaveapps.`stdate` AS facultyleaveapps_stdate,
+     facultyleaveapps.`endate` AS facultyleaveapps_endate,
+     facultyleaveapps.`alt1` AS facultyleaveapps_alt1,
+     facultyleaveapps.`alt2` AS facultyleaveapps_alt2,
+     facultyleaveapps.`info` AS facultyleaveapps_info,
+     facultyleaveapps.`status` AS facultyleaveapps_status,
+     facultyleaveapps.`Remark` AS facultyleaveapps_Remark,
+     facultyleaveapps.`fid` AS facultyleaveapps_fid,
+     faculty.`address` AS faculty_address,
+     faculty.`city` AS faculty_city,
+     leavearrangements.`lid` AS leavearrangements_lid,
+     leavearrangements.`arrdate` AS leavearrangements_date,
+     leavearrangements.`atime` AS leavearrangements_time,
+     leavearrangements.`classorlab` AS leavearrangements_classorlab,
+     leavearrangements.`fname` AS leavearrangements_fname
+FROM
+     `facultyleave` facultyleave INNER JOIN `faculty` faculty ON facultyleave.`fid` = faculty.`fid`
+     INNER JOIN `department` department ON faculty.`dno` = department.`dno`
+     INNER JOIN `facultyleaveapps` facultyleaveapps ON faculty.`fid` = facultyleaveapps.`fid`
+     INNER JOIN `leavearrangements` leavearrangements ON facultyleaveapps.`lid` = leavearrangements.`lid`
+WHERE
+     facultyleaveapps.`lid` = $P{lid}]]>
+	</queryString>
+	<field name="faculty_fid" class="java.lang.Integer"/>
+	<field name="faculty_fname" class="java.lang.String"/>
+	<field name="faculty_lname" class="java.lang.String"/>
+	<field name="faculty_gender" class="java.lang.String"/>
+	<field name="faculty_dno" class="java.lang.Integer"/>
+	<field name="faculty_designation" class="java.lang.String"/>
+	<field name="facultyleave_fid" class="java.lang.Integer"/>
+	<field name="facultyleave_cl" class="java.lang.Float"/>
+	<field name="facultyleave_cla" class="java.lang.Float"/>
+	<field name="facultyleave_dl" class="java.lang.Integer"/>
+	<field name="facultyleave_dla" class="java.lang.Integer"/>
+	<field name="facultyleave_rh" class="java.lang.Integer"/>
+	<field name="facultyleave_rha" class="java.lang.Integer"/>
+	<field name="facultyleave_vl" class="java.lang.Integer"/>
+	<field name="facultyleave_vla" class="java.lang.Integer"/>
+	<field name="facultyleave_acadyear" class="java.lang.String"/>
+	<field name="department_dno" class="java.lang.Integer"/>
+	<field name="department_dname" class="java.lang.String"/>
+	<field name="department_dloc" class="java.lang.String"/>
+	<field name="department_headid" class="java.lang.Integer"/>
+	<field name="facultyleaveapps_fname" class="java.lang.String"/>
+	<field name="facultyleaveapps_ltype" class="java.lang.String"/>
+	<field name="facultyleaveapps_duration" class="java.lang.String"/>
+	<field name="facultyleaveapps_stdate" class="java.sql.Date"/>
+	<field name="facultyleaveapps_endate" class="java.sql.Date"/>
+	<field name="facultyleaveapps_alt1" class="java.lang.String"/>
+	<field name="facultyleaveapps_alt2" class="java.lang.String"/>
+	<field name="facultyleaveapps_info" class="java.lang.String"/>
+	<field name="facultyleaveapps_status" class="java.lang.String"/>
+	<field name="facultyleaveapps_Remark" class="java.lang.String"/>
+	<field name="facultyleaveapps_fid" class="java.lang.Integer"/>
+	<field name="faculty_address" class="java.lang.String"/>
+	<field name="faculty_city" class="java.lang.String"/>
+	<field name="leavearrangements_lid" class="java.lang.Integer"/>
+	<field name="leavearrangements_date" class="java.sql.Date"/>
+	<field name="leavearrangements_time" class="java.lang.String"/>
+	<field name="leavearrangements_classorlab" class="java.lang.String"/>
+	<field name="leavearrangements_fname" class="java.lang.String"/>
+	<group name="fid" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{faculty_fid}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band height="70"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="39" splitType="Stretch">
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="501" y="19" width="84" height="20" uuid="28616734-62d9-4e64-872b-b5d163e26c11"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="663" splitType="Stretch">
+			<staticText>
+				<reportElement x="36" y="180" width="525" height="74" uuid="3a1e9198-69c9-475b-8283-1eaea68f7523"/>
+				<textElement textAlignment="Justified">
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<text><![CDATA[Kindly grant me ___________ for _______________________ day(s)  on/from____________ to______________________ for following reasons
+
+a)
+
+b)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="65" y="236" width="100" height="20" uuid="694a4fd5-ee51-4fc6-b3d9-c12382b3a75d"/>
+				<textFieldExpression><![CDATA[$F{facultyleaveapps_info}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="165" y="179" width="42" height="20" uuid="80130780-b289-461b-aa80-7e4efa6b2bcc"/>
+				<textFieldExpression><![CDATA[$F{facultyleaveapps_ltype}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="122" y="441" width="207" height="0" uuid="5bb60563-9cc7-4ba4-b5aa-44925e432c11"/>
+				<text><![CDATA[Name and Postal Address during Leave]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="88" y="460" width="525" height="297" uuid="645ba7b8-9954-4016-a0dc-ce3b8fe10cfe"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[__________________________________________________________
+
+
+__________________________________________________________
+
+Thanking You,
+
+
+                                                                                                                        Yours faithfully,
+
+
+                                                                                                                  (                                   )
+
+1. Recommended/Not Recommended
+2. Alternate arrangements made / will be made / no applicable ( Shown below)
+
+Signature of  H.O.D/ O.S.
+
+____________________ Department                                                          Leave Sanctioned
+
+
+                                                                                                                         PRINCIPAL      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="236" width="100" height="20" uuid="8adb2677-9ad8-4daf-932c-0171158f424c"/>
+				<text><![CDATA[a)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="43" y="554" width="100" height="20" uuid="21379079-804d-4383-bcf5-23297d4e211a"/>
+				<textFieldExpression><![CDATA[$F{department_dname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="269" width="100" height="20" uuid="3fffb936-b91e-4adf-bfc4-f968380f549b"/>
+				<textFieldExpression><![CDATA[$F{facultyleave_cl}-$F{facultyleave_cla}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="273" y="179" width="100" height="20" uuid="d5a922b2-e0e6-4a0a-bdcf-15f11b52ec14"/>
+				<textFieldExpression><![CDATA[$F{facultyleaveapps_duration}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="501" y="179" width="71" height="20" uuid="260379a2-263e-41e1-83ea-ee3e2a0786a8"/>
+				<textFieldExpression><![CDATA[$F{facultyleaveapps_stdate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="65" y="199" width="100" height="20" uuid="fe012175-25c3-4e1b-9ef6-dad6193ab758"/>
+				<textFieldExpression><![CDATA[$F{facultyleaveapps_endate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="242" y="1" width="100" height="20" uuid="718a35fa-98bc-4afe-9546-ae5a1cf1405d"/>
+				<text><![CDATA[SGBIT, BELGAUM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="142" width="100" height="18" uuid="e1a368d2-b3f0-4822-bd08-88141cc4ef57"/>
+				<text><![CDATA[Sir,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="269" width="500" height="21" uuid="96757bbf-d877-463b-b287-f7a6bd7d4b2c"/>
+				<text><![CDATA[Casual Leave at Credit Days__________________(To be filled & forwarded by HOD)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="89" width="100" height="18" uuid="f81b5b77-728e-4fab-b889-b5da3702e273"/>
+				<text><![CDATA[ To,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="65" y="107" width="164" height="35" uuid="6e7c4751-4264-4ff6-8c2b-ab29f81b6437"/>
+				<textElement textAlignment="Left">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[The Principal, SGBIT, Shivabasav Nagar, Belagavi - 10]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="11" width="100" height="20" uuid="d5ea52a4-fdef-42b5-9f6d-608912e6769f"/>
+				<text><![CDATA[From :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="57" y="53" width="185" height="1" uuid="794fa071-b242-4f0a-a234-f768a0bd951d"/>
+			</line>
+			<line>
+				<reportElement x="57" y="75" width="185" height="1" uuid="c519ee3b-0b67-482f-b7f7-a2de68f34ae2"/>
+			</line>
+			<textField>
+				<reportElement x="65" y="56" width="143" height="20" uuid="869ea466-1736-430c-99e7-a35efed6e8da"/>
+				<textFieldExpression><![CDATA[$F{faculty_designation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="31" width="86" height="20" uuid="488249b2-dbdb-4021-9570-9abda44f0570"/>
+				<textFieldExpression><![CDATA[$F{faculty_fname}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="496" y="0" width="65" height="65" uuid="91588e5c-bb8f-4099-82cd-0b2df0c78840"/>
+				<imageExpression><![CDATA["E:\\sjbit\\images\\sgbitlogo.jfif"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="173" y="364" width="100" height="20" uuid="f566ae33-4947-494d-ac52-bd65bb4b36ce"/>
+				<textFieldExpression><![CDATA[$F{faculty_city}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="333" width="100" height="20" uuid="f7ac2037-752a-46df-8fdc-44e58fc27aef"/>
+				<textFieldExpression><![CDATA[$F{faculty_fname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="364" width="100" height="20" uuid="8a9a7b28-eab3-4d6f-b1ed-0a79bf99f1f4"/>
+				<textFieldExpression><![CDATA[$F{faculty_address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="630" width="100" height="20" uuid="3a22ad38-724b-456c-9d17-a48c2be79f87"/>
+				<textFieldExpression><![CDATA[$F{leavearrangements_classorlab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="632" width="100" height="20" uuid="2bebe164-ab33-4a1a-9647-dbcde9586abb"/>
+				<textFieldExpression><![CDATA[$F{leavearrangements_time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="632" width="100" height="20" uuid="7e275626-5bca-40cf-889b-7aac47bab90f"/>
+				<textFieldExpression><![CDATA[$F{leavearrangements_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="45" y="592" width="164" height="20" uuid="cf99c19a-1650-4015-b2dc-99c62a147bb7"/>
+				<text><![CDATA[Alternate Arrangements :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="43" y="612" width="100" height="20" uuid="51b84a4b-5455-4127-b4e2-5bf798e3e1cb"/>
+				<textFieldExpression><![CDATA[$F{leavearrangements_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="612" width="100" height="20" uuid="d2742ba0-648b-400b-b25b-59470f141f7e"/>
+				<textFieldExpression><![CDATA[$F{leavearrangements_time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="612" width="100" height="20" uuid="f1fb5632-ed0f-4637-afe2-fd224cbd1ba8"/>
+				<textFieldExpression><![CDATA[$F{leavearrangements_classorlab}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="612" width="100" height="20" uuid="44eba110-5e51-4425-9b5f-ead7e9ede8b0"/>
+				<textFieldExpression><![CDATA[$F{leavearrangements_fname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band height="100"/>
+	</summary>
+</jasperReport>

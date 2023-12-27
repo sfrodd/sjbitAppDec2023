@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../myStyles/beautify.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../myScripts/processAdmissions.js"></script>
+ 
+
+    <title>Document</title>
+</head>
+<body>
+
+    <h4 style="color:blue;background-color:aqua;height:40px;padding:2px;width:600px;margin:20px;border-radius:0.5rem">Office Interface.. Student Admission Management </h1>
+    <div style="display:flex;flex-direction: column;">    
+    <!--select id="acadyear" style="color:red;font-weight:bold;margin-bottom:10px;" class="form-select mx-4 w-25" aria-label="Default select example">
+      <option selected>Choose Academic Year</option>
+            <option>2017-18</option>
+            <option>2018-19</option>
+            <option>2019-20</option>
+            <option>2020-21</option>
+            <option>2021-22</option>
+            <option>2022-23</option>
+            <option>2023-24</option>
+    </select>
+    <select id="deptIDName" id="acadyear" style="color:red;font-weight:bold;margin-bottom:10px" class="form-select mx-4 w-25" aria-label="Default select example">
+        <option selected>Choose Department"></option>
+              <option>01 CSE</option>
+              <option>02 EC</option>
+              <option>03 EE</option>
+              <option>04 DS</option>
+              <option>05 MECH</option>
+              <option>06 CVL</option>
+              <option>07 OTHER</option>
+      </select-->
+<div style="border-color:red;margin-top:10x;display:flex;flex-direction: row;width:700px;justify-content:space-between;gap:40px;">     
+    <span style="display:inline-block;width:200px">
+    <input id="usn" style="margin-right:10px;margin:15px" placeholder="University Number" class="form-control mx-4 mt-1">
+    </span>
+    <span style="display:inline-block;width:100px">
+    <button id="search" style="margin-left:10px" class="btn btn-primary m-1">GetInfo
+    </button></span>
+    <a href="../index.html"><button  style='width:120px;margin-left:50px' class="btn btn-dark m-1">Logout</button></a>
+</div>
+<table  style="margin-left:20px;margin-top:10px;width:80%" id="genInfo">
+    <thead style='background-color:rgb(147, 229, 243);color:rgb(237, 15, 45)'>
+        <tr>
+            <th colspan="8">
+                Student Details
+            </th>
+        <tr>
+            <tr>
+                <td>USN</td>
+                <td>NAME</td>
+                <td>SEM</td>
+                <td>DIV</td>
+                <td>BACKLOGS<i id="expand" style="color:green" class="bi bi-plus-circle mx-2"></i>
+                    <i id="collapse" style="color:red" class="bi bi-dash-circle mx-2"></i></td>
+                <td>ADMISSION-CATEGORY</td>
+                <td>ADMISSION-YEAR</td>
+                <td>TOTAL-FEES</td>
+            </tr>
+    </thead>
+
+    <tbody id="studentinfo">
+
+        
+    </tbody>
+    </table>
+    <table style="margin-left:20px;margin-top:10px;width:80%">
+        <thead style='background-color:rgb(172, 246, 152);color:rgb(237, 15, 45)'>
+            <tr>
+                  <td>SUB_CODE</td>
+                  <td>SUB_NAME</td>
+                  <td>SEM</td>
+                  <td>FEES</td>
+                  <td>STAUS</td>
+                  <td>ACTION</td>
+
+            </tr>    
+    <tbody id="backloginfo">
+
+    </tbody>
+</table>
+
+<table style="margin-left:20px;margin-top:10px;width:80%;margin-bottom:10px;"  id="genInfox">
+   <thead style='background-color:rgb(167, 249, 139);color:rgb(58, 18, 240)'>
+    <tr>
+    <th colspan="7">
+        Fee Details
+    </th>
+    </tr>
+    </thead>
+    <thead>
+    <tr>
+        <th>AdmTear</th>
+        <th>AcadYear</th>
+        <th>Total Fees</td>
+        <th>Installment-I</td>
+        <th>Intallment-II</td>
+        <th>Installment-III</td>
+        <th>Intallment-IV</td>
+        <th>Fees Paid</td>
+        <th>Fees Due</td>
+    </tr>
+   </thead>
+
+    <tbody id="stdfeedetails">    
+           <!--Fee Details Here-->
+    </tbody>
+    </table>
+    <table style="margin-left:20px;margin-top:10px;width:80%;">
+    <tbody id="paymentdetails">   
+        <tr>
+            <td>Bank Name</td>
+            <td>UTR No. and Date</td>
+            <td>UTR No. and Date</td>
+            <td>UTR No. and Date</td>
+            <td>UTR No. and Date</td>
+            <td>Paid By</td>
+            <td>Recived By</td>
+        </tr>
+    
+         <tr>
+                <td><input class="form-control" type="text" placeholder="Bank Name"></input></td>
+                <td><input class="form-control" type="text" placeholder="UTR1"></td>
+                <td><input class="form-control" type="text" placeholder="UTR2"></td>
+                <td><input class="form-control" type="text" placeholder="UTR3"></td>
+                <td><input class="form-control" type="text" placeholder="UTR4"></td>
+                <td><input class="form-control" type="text" placeholder="Mode"></td>
+                <td><input class="form-control" type="text" placeholder="Person"></td> 
+        </tr>
+    </tbody>     
+    </table>
+</div>
+</body>
+
+</html>
