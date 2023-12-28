@@ -1,4 +1,5 @@
 $(function(){
+
 let fid=$.session.get('uid');
 var fname=$.session.get('uname');
 fname=fname.toUpperCase();
@@ -27,59 +28,52 @@ $.ajax({
   //On selection of a subject show the students
   $("#subjects").on("change",  function(){
     let ayear=$("#acadyear :selected").text()
-    let sub=$("#subjects :selected").text();
-    scode=$("#subjects :selected").text().substring(0,sub.indexOf(' '));
+    let sub=$("#subjects :selected").text().trim();
+    let scode=$("#subjects :selected").text().substring(0,sub.indexOf(' '));
     let divs=$("#subjects :selected").text().substring(sub.length-1);
+    let sem=scode.substring(4,5)
     //Get IA marks of all students and display page wise
-    //alert(ayear)
+    //alert(scode+" "+sem)
     $.ajax({
         url:"http://localhost:8000/api/getIAMarks",
         type:"POST",
         dataType:"json",
-        data:{"scode":scode,"div":divs,"acadyear":ayear},
+        data:{"scode":scode,"div":divs,"acadyear":ayear,sem:sem},
         success:function(result){
           //Heading.
          $("#allStudents").empty();
 //Display Student USN, Attendance and Marks   
-for(let i=0;i<result.length;i++)
-     $("#allStudents").append("<li style='border-radius:0.25rem;width:1200px;height:45px' class='list-group-item mt-2 mx-4'>"+
-     "<span id=usn"+i+">"+result[i].usn+
-     "</span><input id=inp-"+i+" style='margin-left:30px;width:90px' type='text' placeholder='att' value="+(result[i].percAttendance>0?result[i].percAttendance:"")+"></input>"+
-     "<input id=m1-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m1' value="+(result[i].m1>0 ? result[i].m1:"" )+"></input>"+
-     "<input id=m2-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m2' value="+(result[i].m2>0 ? result[i].m2:"" )+"></input>"+
-     "<input id=m3-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m3' value="+(result[i].m3>0 ? result[i].m3:""  )+"></input>"+
-     "<input id=avg-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='Avg' value="+computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed()+"></input>"+
-     "<input id=ass-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='AS-1' value="+(result[i].ass1>=0?result[i].ass1:result[i].ass1==-1?"":"AB" )+"></input>"+
-   // "<input id=cie"+i+" style='margin-left:25px;width:65px' type='text' placeholder='CIE' value="+(result[i].cie>=0?result[i].cie:"AB")+"></input>"+
-   "<input id=cie"+i+" style='margin-left:25px;width:65px' type='text' placeholder='CIE' value="+(parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed()))+"></input>"+
-     "<input id=see-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='SEE' value="+(result[i].see>=0?result[i].see:result[i].see==-1?"AB":"" )+"></input>"+
-     "<input id=gtot"+i+" style='margin-left:25px;width:75px' type='text' placeholder='Gtotal' value="+(parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed())+parseInt(result[i].see)*0.6).toFixed(2)+"></input>"+
-     "<input id=class"+i+" style='margin-left:25px;width:75px' type='text' placeholder='Class' value="+getClass((parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed())+parseInt(result[i].see)*0.6))+"></input>"+
+          for(let i=0;i<result.length;i++)
+                 $("#allStudents").append("<li style='border-radius:0.25rem;width:1200px;height:45px' class='list-group-item mt-2 mx-4'>"+
+                 "<span id=usn"+i+">"+result[i].usn+
+                  "</span><input id=inp-"+i+" style='margin-left:30px;width:90px' type='text' placeholder='att' value="+(result[i].percAttendance>0?result[i].percAttendance:"")+"></input>"+
+                  "<input id=m1-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m1' value="+(result[i].m1>0 ? result[i].m1:"" )+"></input>"+
+                  "<input id=m2-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m2' value="+(result[i].m2>0 ? result[i].m2:"" )+"></input>"+
+                  "<input id=m3-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m3' value="+(result[i].m3>0 ? result[i].m3:""  )+"></input>"+
+                  "<input id=avg-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='Avg' value="+computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed()+"></input>"+
+                  "<input id=ass-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='AS-1' value="+(result[i].ass1>=0?result[i].ass1:result[i].ass1==-1?"":"AB" )+"></input>"+
+               // "<input id=cie"+i+" style='margin-left:25px;width:65px' type='text' placeholder='CIE' value="+(result[i].cie>=0?result[i].cie:"AB")+"></input>"+
+                  "<input id=cie"+i+" style='margin-left:25px;width:65px' type='text' placeholder='CIE' value="+(parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed()))+"></input>"+
+                  "<input id=see-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='SEE' value="+(result[i].see>=0?result[i].see:result[i].see==-1?"AB":"" )+"></input>"+
+                  "<input id=gtot"+i+" style='margin-left:25px;width:75px' type='text' placeholder='Gtotal' value="+(parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed())+parseInt(result[i].see)*0.6).toFixed(2)+"></input>"+
+                  "<input id=class"+i+" style='margin-left:25px;width:75px' type='text' placeholder='Class' value="+getClass((parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed())+parseInt(result[i].see)*0.6))+"></input>"+
+                  "<i id=tick"+i+
+                  " style='margin-left:30px;color:green;opacity:0.1;font-weight:bold' class='bi bi-check'></i>"+
+                  "</li>")
 
-     "<i id=tick"+i+
-     " style='margin-left:30px;color:green;opacity:0.1;font-weight:bold' class='bi bi-check'></i></li>")
-
-     if(firstTime)  { 
      $("#allStudents").paginathing({
          perPage: 7,
          limitPagination: 10,
-         containerClass: 'panel-footer m-4',   
+         containerClass:'panel-footer m-4',   
          pageNumbers: true,
-       // containerClass: 'pagination-container',
-     // Extend default <ul> class
-      ulClass: 'pagination',
-     // Extend <li> class
-         liClass: 'page-item',
-        
-       })
-      }
-       else{
-        firstTime=false
-       $("#allStudents").paginathing({containerClass:'',pageNumbers:false, 
-       ulClass:'',liClass:''}).empty() 
-       }
-     }
-})  //End of Ajax  //Upto here it is perfectly Okay:
+         // containerClass: 'pagination-container',
+      // Extend default <ul> class
+         // ulClass: 'pagination',
+        //Extend <li> class
+          liClass: 'page-item',
+          })
+        }
+    })  //End of Ajax  //Upto here it is perfectly Okay:
 
 }) //End of Change event
 var inputVal    
@@ -110,12 +104,15 @@ $("#allStudents").on("keypress","input",function(event){
         i=$(this).attr("id")
         idx=parseInt(i.substring(i.indexOf('-')+1,i.length))
         usn=$("#usn"+idx).text()
-        //alert(usn)
+        acadyear=$("#acadyear").val()
+        let sub=$("#subjects :selected").text().trim();
+        let scode=$("#subjects :selected").text().substring(0,sub.indexOf(' '));
+       // alert(scode)
         $.ajax({
           url:"http://localhost:8000/api/upDateAttendance",
           type:"POST",
           dataType:"json",
-          data:{"usn":usn,"scode":scode,"patt":attendance,"dummy":"Hello"},
+          data:{"usn":usn,"scode":scode,"patt":attendance,acadyear:acadyear},
           sync:true,
           success:function(result){
            console.log(result)
@@ -149,6 +146,8 @@ $("#allStudents").on("keypress","input",function(event){
             idx=parseInt(i.substring(i.indexOf('-')+1,i.length))
             let markscol="m"+i.substring(1,2)
             let marks=$(this).val()
+            let sub=$("#subjects :selected").text().trim();
+            let scode=$("#subjects :selected").text().substring(0,sub.indexOf(' '));           
             usn=$("#usn"+idx).text()
            // alert(usn+" "+marks+"  "+scode+"  "+markscol+"  "+idx)
             $.ajax({
@@ -194,6 +193,8 @@ $("#allStudents").on("keypress","input",function(event){
           let seecol="see"
           let seemarks=$(this).val()
           usn=$("#usn"+idx).text()
+          let sub=$("#subjects :selected").text().trim();
+          let scode=$("#subjects :selected").text().substring(0,sub.indexOf(' '));  
           //alert(usn+" "+assmarks+"  "+scode+"  "+asscol)
           $.ajax({
           url:"http://localhost:8000/api/upDateMarks",
@@ -236,6 +237,8 @@ $("#allStudents").on("keypress","input",function(event){
             let asscol="ass1"
             let assmarks=$(this).val()
             usn=$("#usn"+idx).text()
+            let sub=$("#subjects :selected").text().trim();
+            let scode=$("#subjects :selected").text().substring(0,sub.indexOf(' '));
             //alert(usn+" "+assmarks+"  "+scode+"  "+asscol)
             $.ajax({
             url:"http://localhost:8000/api/upDateMarks",

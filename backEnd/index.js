@@ -552,8 +552,29 @@ App.post("/api/getIAMarks",(req,resp)=>{
     var scode=req.body.scode;
     var div=req.body.div;
     var acadyear=req.body.acadyear
-    console.log("I am here " +acadyear);
-    myCon.query("select * from iascore where scode='"+scode+"' and division='"+div+"' and acadyear='"+acadyear+"'",function(err,result){
+    let branch=req.body.branch
+    let sem=req.body.sem;
+    //sem=3
+    var dno=1
+    switch(branch){
+
+        case "CSE" : dno=1;break;
+        case "ECE" : dno=2;break;
+        case "EEE" : dno=3;break;
+        case "CIVIL" : dno=4;break;
+        case "MECH" : dno=5;break;
+        case "AIDS" : dno=6;break;
+        case "CSBS" : dno=7;break;
+    }
+    
+    if(sem==1 || sem==2) tableName="istyeariascore";
+    if(sem==3 || sem==4) tableName="iindyeariascore";
+    if(sem==5 || sem==6) tableName="iiirdyeariascore";
+    if(sem==7 || sem==8) tableName="ivthyeariascore";
+    
+
+   // console.log("I am here " +acadyear);
+    myCon.query("select * from " +tableName+" where scode='"+scode+"' and division='"+div+"' and acadyear='"+acadyear+"' and dno="+dno,function(err,result){
         if(err) console.log(err)
         else
         resp.send(result);
@@ -935,6 +956,78 @@ App.get("/api/getLeaveInfo/:fid",(req,resp)=>{
     })
  })
 
+App.post("/api/getSubjects",(req,resp)=>{
+   //Enroll Students for courses of a semester
+   let scheme=parseInt(req.body.scheme)
+   let sem=parseInt(req.body.sem) ; let dname=req.body.dname
+   let acadyear=req.body.acadyear
+   let dno=0
+   switch(dname)
+    {
+        case "CSE":dno=1;break;
+        case "ECE" :dno=2;break;
+        case "EEE":dno=3;break;
+        case "CIVIL":dno=4;break;
+        case "MECH":dno=5;break;
+        case "AIDS":dno=6;break;
+        case "CSBS":dno=7;break;
+    }
+
+    let data=[]
+    data.push(sem);data.push(scheme);data.push(dno)
+    console.log(data)
+    myCon.query("select * from subject where sem=? and scheme=? and dno=?",data,(err,result)=>{
+          if(err) console.log(err)
+          else{
+          console.log(result)
+          let tableName=""
+          let stdTableName=""
+          switch(sem){
+            case 1: tableName="istyeariascore";stdTableName="iyearstudents";break
+            case 2: tableName="istyeariascore";stdTableName="iyearstudents";break;
+            case 3: tableName="iindyeariascore";stdTableName="iiyearstudents";break
+            case 4: tableName="iindyeariascore";stdTableName="iiyearstudents";break; 
+            case 5: tableName="iiirdyeariascore";stdTableName="iiiyearstudents";break
+            case 6: tableName="iiirdyeariascore";stdTableName="iiiyearstudents";break;
+            case 7: tableName="ivthyeariascore";stdTableName="ivyearstudents";break
+            case 8: tableName="ivthtyeariascore";stdTableName="ivyearstudents";break;
+          } 
+          //Get all student USNs     
+          myCon.query("select * from "+stdTableName,(err,result1)=>{
+            if(err) console.log(err)
+            else{
+            console.log("Inside Total USNs "+result1.length)
+           
+         // console.log("Total USNs "+students.length)
+          //For each subjectcode...
+          //insert usn and subject code in table tableName;
+          //For each subjectcode
+          for(let i=0;i<result.length;i++)
+             //For each student USN
+             for(let j=0;j<result1.length;j++)
+                //Insert USN and SubjectCode
+                   {    let data=[]
+                        let scode=result[i].scode
+                        let usn=result1[j].usn
+                        let div=result1[j].division
+                        data.push(usn);data.push(scode);data.push(acadyear);data.push(dno)
+                        data.push(div)
+                        myCon.query("insert into "+tableName+"(usn,scode,acadyear,dno,division) values(?,?,?,?,?)",data,(err,result)=>{
+                            if(err) console.log(err)
+                           // else
+                            //console.log(result.affectedRows)
+                        })
+
+                   }//InnerFor loop
+                } //Else
+                 
+          resp.send(result)
+            
+        })  //Inner Query end
+      }//Else
+    }) //End of Outer query
+})
+
 //Show issues related to Hod
  App.get("/api/getAllIssues",(req,resp)=>{
   console.log("All issues sent")
@@ -1062,16 +1155,38 @@ myCon.query(sql,[datax],function(err,result){
 })
 //Update Attendance Set by faculty
 App.post("/api/upDateAttendance",(req,resp)=>{
+    var scode="";
+    var div=req.body.div;
+    var acadyear=req.body.acadyear
+    let branch=req.body.branch
+    let sem=req.body.sem;
+    //sem=3
+    var dno=1
+    switch(branch){
+
+        case "CSE" : dno=1;break;
+        case "ECE" : dno=2;break;
+        case "EEE" : dno=3;break;
+        case "CIVIL" : dno=4;break;
+        case "MECH" : dno=5;break;
+        case "AIDS" : dno=6;break;
+        case "CSBS" : dno=7;break;
+    }
+    
+    if(sem==1 || sem==2) tableName="istyeariascore";
+    if(sem==3 || sem==4) tableName="iindyeariascore";
+    if(sem==5 || sem==6) tableName="iiirdyeariascore";
+    if(sem==7 || sem==8) tableName="ivthyeariascore";
      let datax=[]
      let usn=req.body.usn;
-     let scode=req.body.scode;
+     scode=req.body.scode;
      let myAttendance=req.body.patt;
      console.log(usn+" My Attendance is "+myAttendance+" in"+scode)
      datax.push(usn);
      datax.push(scode)
-     sql="update iascore set percAttendance=? where usn=? and scode=?"
+     sql="update "+tableName+" set percAttendance=? where usn=? and scode=? and acadyear=?"
      console.log(sql)
-     myCon.query(sql,[myAttendance,usn,scode],function(err,result){
+     myCon.query(sql,[myAttendance,usn,scode,acadyear],function(err,result){
         if(err) console.log(err)
         else {
             resp.send(result)
@@ -1082,30 +1197,51 @@ App.post("/api/upDateAttendance",(req,resp)=>{
 })
 
 App.post("/api/upDateMarks",(req,resp)=>{
+    var scode=req.body.scode;
+    var div=req.body.div;
+    var acadyear=req.body.acadyear
+    let branch=req.body.branch
+    let sem=req.body.sem;
+    //sem=3
+    var dno=1
+    switch(branch){
 
+        case "CSE" : dno=1;break;
+        case "ECE" : dno=2;break;
+        case "EEE" : dno=3;break;
+        case "CIVIL" : dno=4;break;
+        case "MECH" : dno=5;break;
+        case "AIDS" : dno=6;break;
+        case "CSBS" : dno=7;break;
+    }
+    
+    if(sem==1 || sem==2) tableName="istyeariascore";
+    if(sem==3 || sem==4) tableName="iindyeariascore";
+    if(sem==5 || sem==6) tableName="iiirdyeariascore";
+    if(sem==7 || sem==8) tableName="ivthyeariascore";
     let usn=req.body.usn;
-    let scode=req.body.scode
+    scode=req.body.scode
     let markscol=req.body.markscol
     let marks=parseFloat(req.body.marks)
     console.log(marks+ "  "+markscol+" "+usn+"  "+scode)
     var sql=""
     switch(markscol){
     case "m1" :    
-    sql="update iascore set m1="+marks+" where usn=? and scode=?";break;
+    sql="update "+tableName+" set m1="+marks+" where usn=? and scode=?";break;
     case "m2" :    
-    sql="update iascore set m2="+marks+" where usn=? and scode=?";break;
+    sql="update "+tableName+" set m2="+marks+" where usn=? and scode=?";break;
     case "m3" :    
-    sql="update iascore set m3="+marks+" where usn=? and scode=?";break;
+    sql="update "+tableName+" set m3="+marks+" where usn=? and scode=?";break;
     case "ass1" :    
-    sql="update iascore set ass1="+marks+" where usn=? and scode=?";break;
+    sql="update "+tableName+" set ass1="+marks+" where usn=? and scode=?";break;
     case "cie" :    
-    sql="update iascore set cie="+marks+" where usn=? and scode=?";break;
+    sql="update "+tableName+" set cie="+marks+" where usn=? and scode=?";break;
     case "see" :    
-    sql="update iascore set see="+marks+" where usn=? and scode=?"; break;
+    sql="update "+tableName+" set see="+marks+" where usn=? and scode=?"; break;
     //To be addressed
     //sql1="update iascore set gtotal="+marks+" where usn=? and scode=?";break;
     case "average" :    
-    sql="update iascore set avg1="+marks+" where usn=? and scode=?";break;    
+    sql="update "+tableName+" set avg1="+marks+" where usn=? and scode=?";break;    
     }
     console.log(sql)
     myCon.query(sql,[usn,scode],function(err,result){
