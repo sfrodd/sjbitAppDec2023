@@ -284,10 +284,11 @@ var uname=req.params.user;
 //var pwd=req.body.password;
 credits.push(uname)
 //credits.push(pwd)
-myCon.query("select * from loginpwds where uname='"+uname+"'",function(err,result){
+myCon.query("select l.uname,l.uid as uid ,pwd,f.branch from loginpwds l, faculty f where uname=? and l.uid=f.fid",credits,function(err,result){
     if(err) console.log(err)
-    else
+    else{
     resp.send(result);
+    }
 }
 );
 })
@@ -301,6 +302,7 @@ App.post("/api/addFaculty",(req,resp)=>{
     let branch=req.body.branch
     let emailId=req.body.emailId
     let cellNum=req.body.cellNum
+    let uname=req.body.username
     let data=[]
     let dno=0
     switch(branch)
@@ -316,14 +318,40 @@ App.post("/api/addFaculty",(req,resp)=>{
      data.push(dno);data.push(fname);data.push(lname);data.push(dob);data.push(designation)
      data.push(gender);data.push(doj);data.push(branch);data.push(emailId)
      data.push(cellNum); 
-
     myCon.query("insert into faculty(dno,fname,lname,dob,designation,gender,doj,branch,emailId,cellNum)"+
     " values(?,?,?,?,?,?,?,?,?,?)",data,(err,result)=>{
         if(err) console.log(err)
-        else
-        resp.send(result)
+        //else
+        //resp.send(result)
     })
+    myCon.commit();
+    var fid=0
+    myCon.query("select max(fid) as maxfid from faculty",(err,result)=>{
+    if(err) console.log(err)
+    else{
+    console.log("MaxFid Sent..")
+    resp.send(result)
+    }
+})
 
+}) //End of POST
+
+App.post("/api/insertUser",(req,resp)=>{
+    let uname=req.body.username
+    let fid=req.body.fid 
+    console.log(fid)
+    let data1=[]
+    data1.push(fid);data1.push(uname);
+    data1.push("abc123^")
+    data1.push("user");data1.push("faculty") 
+    myCon.query("insert into loginpwds(uid,uname,pwd,type,category) values(?,?,?,?,?)",data1,(err,result)=>{
+        if(err) console.log(err)
+        else {
+    console.log("Insertion succesful..")
+        resp.send(result)
+        
+    }
+    })
 })
 
 App.post("/api/getAllStudents",(req,resp)=>{
@@ -626,13 +654,24 @@ myCon.query("update "+tableName+" set division=? where usn between ? and ? and s
 
 })
 
-
+//To be Commented as a duplicate exists
 App.post("/api/getUSNs",(req,resp)=>{
 
     let sem=parseInt(req.body.sem)
     let acadyear=req.body.acadYear
     let branch=parseInt(req.body.branch)
     tableName=""
+    let dno=0
+    switch(branch){
+
+        case "CSE" : dno=1;break;
+        case "ECE" : dno=2;break;
+        case "EEE" : dno=3;break;
+        case "CIVIL" : dno=4;break;
+        case "MECH" : dno=5;break;
+        case "AIDS" : dno=6;break;
+        case "CSBS" : dno=7;break;
+    }
     switch(sem){
 
         case 1:tableName="istyearstudents" ;break;
@@ -1062,6 +1101,92 @@ App.post("/api/updateHremark",(req,resp)=>{
 
 })
 
+
+
+App.post("/api/getUSNforMapping",(req,resp)=>{
+    let acadyear=req.body.acadyear
+    let sem=parseInt(req.body.sem)
+    console.log("I am here in getUSNMapping "+sem)
+    let div=req.body.div
+    let branch=req.body.branch
+    let dno=0
+    switch(branch){
+
+        case "CSE" : dno=1;break;
+        case "ECE" : dno=2;break;
+        case "EEE" : dno=3;break;
+        case "CIVIL" : dno=4;break;
+        case "MECH" : dno=5;break;
+        case "AIDS" : dno=6;break;
+        case "CSBS" : dno=7;break;
+    }
+    
+    let tableName=""
+    switch(sem){
+        case 1 : tableName="iyearstudents";break 
+        case 3 : tableName="iiyearstudents";break 
+        case 5 : tableName="iiiyearstudents";break 
+        case 7 : tableName="ivyearstudents";break 
+    }
+    let data=[];data.push(div);data.push(acadyear);data.push(dno)
+    myCon.query("select * from "+tableName+ " where Division=? and acadyear=? and dno=?",data,function(err,result){
+        if(err) console.log(err)
+        else
+        resp.send(result);
+    }
+    );
+})
+
+App.post("/api/assignMentees",(req,resp)=>{
+    let fromUSN=req.body.fromUSN
+    let toUSN=req.body.toUSN
+    let fid=req.body.fid
+    let sem=5; let acadyear="2021-22"
+    let startNum=fromUSN.substring(7)
+    let endNum=toUSN.substring(7)
+    console.log(startNum)
+    for(let i=parseInt(startNum);i<=parseInt(endNum);i++) {
+      if(i<10)
+      usn=fromUSN.substring(0,7)+"00"+i
+      else if(i>=10 && i<100)
+      usn=fromUSN.substring(0,7)+"0"+i
+      else
+      usn= usn=fromUSN.substring(0,7)+i
+       
+    let data=[];
+    data.push(usn);data.push(fid);data.push(sem);data.push(acadyear)
+    myCon.query("insert into facultymentoring(usn,fid,sem,acadyear) values(?,?,?,?)",data,(err,result)=>{
+        if(err) console.log(err)
+       
+    })
+ }
+resp.sendStatus(200)
+})
+
+//api/getallBranchFaculty/:branch
+App.get("/api/getallBranchFaculty/:branch",(req,resp)=>{
+    let branch=req.params.branch
+    let dno=0
+    switch(branch){
+
+        case "CSE" : dno=1;break;
+        case "ECE" : dno=2;break;
+        case "EEE" : dno=3;break;
+        case "CIVIL" : dno=4;break;
+        case "MECH" : dno=5;break;
+        case "AIDS" : dno=6;break;
+        case "CSBS" : dno=7;break;
+    }
+    
+    myCon.query("select * from faculty where dno="+dno,function(err,result){
+        if(err) console.log(err)
+        else
+        resp.send(result);
+    }
+    );
+})
+
+
 App.get("/api/getallFaculty",(req,resp)=>{
 
     myCon.query("select * from faculty",function(err,result){
@@ -1081,10 +1206,11 @@ App.get("/api/getallSubjects",(req,resp)=>{
     }
     );
 })
-
-App.get("/api/getallSubjects/:sem",(req,resp)=>{
-    let sem=parseInt(req.params.sem)
-    myCon.query("select * from subject where sem="+sem,function(err,result){
+//Changed from get to post method on 29/12/2023
+App.post("/api/getallSubjects",(req,resp)=>{
+    let sem=parseInt(req.body.sem)
+    let dno=parseInt(req.body.dno)
+    myCon.query("select * from subject where sem="+sem+" and dno="+dno,function(err,result){
         if(err) console.log(err)
         else
         resp.send(result);
@@ -1094,7 +1220,7 @@ App.get("/api/getallSubjects/:sem",(req,resp)=>{
 
 App.get("/api/getMentees/:fid",(req,resp)=>{
     fid=req.params.fid;
-    myCon.query("select f.fname as facName,s.fname as fname, cellNum, s.emailid as emailid, fm.usn,fm.sem from faculty f, student s, facultymentoring fm where fm.fid=f.fid and fm.usn=s.usn  and fm.fid='"+fid+"'",function(err,result){
+    myCon.query("select f.fname as facName,s.fname as fname, s.cellNum, s.emailid as emailid, fm.usn,fm.sem from faculty f, student s, facultymentoring fm where fm.fid=f.fid and fm.usn=s.usn  and fm.fid='"+fid+"'",function(err,result){
         if(err) console.log(err)
         else {
             console.log(result)
@@ -1350,10 +1476,11 @@ App.get("/api/getStudentMarks/:usn",(req,resp)=>{
     );
 })
 
-App.get("/api/getFacultySubjects/:fid",(req,resp)=>{
-    var fid=parseInt(req.params.fid);
-   // console.log("I am here " +fid);
-    myCon.query("select * from facultysubjects fs, subject s where fs.scode=s.scode and fid="+fid,function(err,result){
+App.post("/api/getFacultySubjects",(req,resp)=>{
+    var fid=parseInt(req.body.fid);
+    var acadyear=req.body.acadyear
+    console.log("I am here " +fid+" "+acadyear);
+    myCon.query("select * from facultysubjects fs, subject s where fs.scode=s.scode and fid="+fid+" and acadyear='"+acadyear+"'",function(err,result){
         if(err) console.log(err)
         else
         resp.send(result);

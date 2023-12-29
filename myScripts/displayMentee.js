@@ -1,4 +1,5 @@
 $(function(){
+
 let usn=$.session.get('usn')
 let stname=$.session.get('stname')
 //Need to be addressed Addresssed the issue on 18-02-2023
@@ -9,7 +10,7 @@ $("#mentoringDetailsX").append("<li style='font-weight:bold;color:yellow;backgro
 "<span style='display:block-inline;width:200px;margin-left:0px'>Action Taken By Faculty</span>"+
 "<span style='display:block-inline;width:200px;margin-left:120px'>Action Taken By Hod</span>"+
 "<span style='display:block-inline;width:200px;margin-left:80px'>Issue Status</span>"+
-"</li>")
+"</li>") 
     $.ajax({
         url:"http://localhost:8000/api/getDiscDetails/"+usn,
         type:"GET",

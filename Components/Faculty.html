@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../myStyles/beautify.css">
+    <!--link rel="stylesheet" href="../myStyles/PagingStyle.css"-->
     <!--link rel="stylesheet" href="../myStyles/css.css"-->    
-    <script src="../node_modules/EasyPagination/Easy-Table-List-Pagination-Plugin-With-jQuery-Paginathing/dist/paginathing.min.js"></script>
-    <script src="../myScripts/paginathing.min.js.map"></script>
-   
+    <!--script src="../node_modules/EasyPagination/Easy-Table-List-Pagination-Plugin-With-jQuery-Paginathing/dist/paginathing.min.js"></script>
+    <script src="../myScripts/paginathing.min.js.map"></script-->
+   <script src="../node_modules/Easy-Table-List-Pagination-Plugin-With-jQuery-Paginathing/dist/paginathing.min.js"></script>
+   <script src="../node_modules/Easy-Table-List-Pagination-Plugin-With-jQuery-Paginathing/dist/paginathing.min.js.map"></script>
     <title>Document</title>
 </head>
 <body>
@@ -27,9 +29,9 @@
         <button id="suball" style="margin-left:10px;" class="btn btn-primary">Sub-Allot</button></a>
         <a href="../Components/LeaveApp.html"><button style="margin-left:10px;" class="btn btn-success">Apply Leave</button></a>
         <a href="../Components/Mentoring.html"><button style="margin-left:10px;" class="btn btn-light">Mentoring</button></a>
-
+         
         </div>
-    <div style="display:flex;width:1100px">
+    <div style="display:flex;width:1100px;margin-left:10px">
         <select  id="acadyear" style="color:red;font-weight:bold"  id="direction" class="form-select mx-3 w-25" aria-label="Default select example">   
             <option selected>Academic Year</option>
             <option>2020-21</option>
@@ -39,19 +41,20 @@
     <select id="subjects" style="color:red;font-weight:bold" class="form-select mx-4 w-50" aria-label="Default select example">   
     <option selected>Select Subject</option>
     </select>
-    <span style='margin-top:5px;
+    <span id="branch" style='margin-top:5px;
     font-weight: bold;border-radius:0.25rem;width:120px;
     padding-left:10px;padding-top:3px;
-    height:30px;background-color:yellow;color:red;'>CSE</span>
+    height:30px;background-color:yellow;color:red;'></span>
     
-    <img src="../sgbitlogo.jfif" style="margin-left:80px;border-radius:4rem" width="40px" hieght="30px" alt="logo"> 
+    
+    <a href="./FacultyCourseFile.html"><button  style='width:120px;margin-left:50px' class="btn btn-dark">CourseFile</button></a>
     <a href="./FacultyDocUpload.html"><button  style='width:120px;margin-left:50px' class="btn btn-dark">Fac-Docs</button></a>
     <a href="../index.html"><button  style='width:120px;margin-left:50px' class="btn btn-dark">Logout</button></a>
+    <img src="../sgbitlogo.jfif" style="margin-left:50px;border-radius:4rem" width="40px" hieght="30px" alt="logo"> 
 </div>
 
 <ul id="allStudentsx" style="color:brown" class="list-group" style="list-style:none;">
-    <li id="head" style='background-color:yellow;width:1200px;height:45px;color:blue' class='list-group-item 
-        mt-2 mx-4'>
+    <li id="head" style='background-color:yellow;width:1200px;height:45px;color:blue' class='list-group-item mt-2 mx-4'>
         <span  style='display:inline-block;width:110px'>USN
         </span><span style='display:inline-block;width:95px;margin-left:30px;'>Attendance</span>
         <span style='display:inline-block;margin-left:25px;width:85px'>M1</span>

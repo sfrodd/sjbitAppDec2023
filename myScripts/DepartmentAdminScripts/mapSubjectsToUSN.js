@@ -1,7 +1,11 @@
 $(function(){
-
+    $("#backz").on("click",function(e){
+        window.location="./deptadminDashBoard.html"
+    })
 $("#dname").on("change",function(e){
 e.preventDefault();
+
+
 let scheme=$("#scheme :selected").val();
 let sem=$("#sem :selected").val();
 let dname=$("#dname :selected").val()

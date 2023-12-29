@@ -3,7 +3,7 @@ var acadyear=$("#acadyear :selected").text()
 $("#logout").on("click",function(e){
   e.preventDefault();
 
-  window.location="../index.html"
+  window.location="../../index.html"
 })
 
 $("#initLeave").on("click",function(){

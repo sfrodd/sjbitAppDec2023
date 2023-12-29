@@ -12,7 +12,9 @@ var idx=""
 var currentBox
 var nextBox
 var usn
+$("#branch").text($.session.get('branch'))
 //Append the subject list box with faculty's subjects
+/*
 $.ajax({
    url:"http://localhost:8000/api/getFacultySubjects/"+fid,
    type:"GET",
@@ -24,6 +26,31 @@ $.ajax({
    $("#subjects").append("<option >"+result[i].scode+" "+result[i].sname+" " +result[i].Division+"</option>")
    }
   })//End of Ajax
+*/
+  $("#acadyear").on("change",function(e){
+    e.preventDefault()
+    let fid=$.session.get('uid');
+    let acadyear=$("#acadyear :selected").val() 
+    //Append the subject list box with faculty's subjects
+$.ajax({
+  url:"http://localhost:8000/api/getFacultySubjects/",
+  type:"POST",
+  dataType:"json",
+  data:{fid:fid,acadyear:acadyear},
+  success:function(result){
+  if(result.length==0) { $("#allStudents").empty();
+  $("#subjects").empty();
+  }
+  else  
+  $("#subjects").empty();
+  $("#subjects").append("<option>Select Subject</option>")
+  for(let i=0;i<result.length;i++)
+  $("#subjects").append("<option >"+result[i].scode+" "+result[i].sname+" " +result[i].Division+"</option>")
+  }
+ })//End of Ajax
+
+
+  })
 
   //On selection of a subject show the students
   $("#subjects").on("change",  function(){
@@ -31,7 +58,14 @@ $.ajax({
     let sub=$("#subjects :selected").text().trim();
     let scode=$("#subjects :selected").text().substring(0,sub.indexOf(' '));
     let divs=$("#subjects :selected").text().substring(sub.length-1);
-    let sem=scode.substring(4,5)
+    let sem=0
+    //To extract semester from subject code following code is written on 29/12/2023
+    if(scode.length==6)
+    sem=scode.substring(4,5)
+    else if(scode.length==7 && scode.charAt(4)=='L')
+    sem=scode.substring(5,6)
+    else
+    sem=scode.substring(4,5)
     //Get IA marks of all students and display page wise
     //alert(scode+" "+sem)
     $.ajax({
@@ -44,26 +78,33 @@ $.ajax({
          $("#allStudents").empty();
 //Display Student USN, Attendance and Marks   
           for(let i=0;i<result.length;i++)
-                 $("#allStudents").append("<li style='border-radius:0.25rem;width:1200px;height:45px' class='list-group-item mt-2 mx-4'>"+
+                 $("#allStudents").append("<li style='border-radius:0.25rem;width:1200px;height:45px'"+
+                " class='list-group-item mt-2 mx-4'>"+
                  "<span id=usn"+i+">"+result[i].usn+
-                  "</span><input id=inp-"+i+" style='margin-left:30px;width:90px' type='text' placeholder='att' value="+(result[i].percAttendance>0?result[i].percAttendance:"")+"></input>"+
-                  "<input id=m1-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m1' value="+(result[i].m1>0 ? result[i].m1:"" )+"></input>"+
-                  "<input id=m2-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m2' value="+(result[i].m2>0 ? result[i].m2:"" )+"></input>"+
-                  "<input id=m3-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m3' value="+(result[i].m3>0 ? result[i].m3:""  )+"></input>"+
-                  "<input id=avg-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='Avg' value="+computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed()+"></input>"+
-                  "<input id=ass-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='AS-1' value="+(result[i].ass1>=0?result[i].ass1:result[i].ass1==-1?"":"AB" )+"></input>"+
+                  "</span>"+
+                  "<input id=inp-"+i+" style='margin-left:30px;width:90px' type='text' placeholder='att' value="+(result[i].percAttendance>0?result[i].percAttendance:"")+
+                  ">"+
+                  "<input id=m1-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m1' value="+(result[i].m1>0 ? result[i].m1:"" )+">"+
+                  "<input id=m2-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m2' value="+(result[i].m2>0 ? result[i].m2:"" )+">"+
+                  "<input id=m3-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='m3' value="+(result[i].m3>0 ? result[i].m3:""  )+">"+
+                  "<input id=avg-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='Avg' value="+computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed()+">"+
+                  ""+
+                  "<input id=ass-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='AS-1' value="+(result[i].ass1>=0?result[i].ass1:result[i].ass1==-1?"":"AB" )+">"+
                // "<input id=cie"+i+" style='margin-left:25px;width:65px' type='text' placeholder='CIE' value="+(result[i].cie>=0?result[i].cie:"AB")+"></input>"+
-                  "<input id=cie"+i+" style='margin-left:25px;width:65px' type='text' placeholder='CIE' value="+(parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed()))+"></input>"+
-                  "<input id=see-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='SEE' value="+(result[i].see>=0?result[i].see:result[i].see==-1?"AB":"" )+"></input>"+
-                  "<input id=gtot"+i+" style='margin-left:25px;width:75px' type='text' placeholder='Gtotal' value="+(parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed())+parseInt(result[i].see)*0.6).toFixed(2)+"></input>"+
-                  "<input id=class"+i+" style='margin-left:25px;width:75px' type='text' placeholder='Class' value="+getClass((parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed())+parseInt(result[i].see)*0.6))+"></input>"+
-                  "<i id=tick"+i+
-                  " style='margin-left:30px;color:green;opacity:0.1;font-weight:bold' class='bi bi-check'></i>"+
+                  "<input id=cie"+i+" style='margin-left:25px;width:65px' type='text' placeholder='CIE' value="+(parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed()))+
+                  "></input>"+
+                  "<input id=see-"+i+" style='margin-left:25px;width:65px' type='text' placeholder='SEE' value="+(result[i].see>=0?result[i].see:result[i].see==-1?"AB":"" )+
+                  ">"+
+                  "<input id=gtot"+i+" style='margin-left:25px;width:75px' type='text' placeholder='Gtotal' value="+(parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed())+parseInt(result[i].see)*0.6).toFixed(2)+
+                  ">"+
+                  "<input id=class"+i+" style='margin-left:25px;width:75px' type='text' placeholder='Class' value="+getClass((parseFloat(result[i].ass1)+parseFloat(computeAverage(result[i].m1,result[i].m2,result[i].m3).toFixed())+parseInt(result[i].see)*0.6))+
+                  ">"+
+                  "<i id='tick"+i+"' style='margin-left:30px;color:green;opacity:0.1;font-weight:bold' class='bi bi-check'></i>"+
                   "</li>")
 
      $("#allStudents").paginathing({
          perPage: 7,
-         limitPagination: 10,
+         limitPagination: 11,
          containerClass:'panel-footer m-4',   
          pageNumbers: true,
          // containerClass: 'pagination-container',

@@ -5,6 +5,7 @@ var ansCount=0;
 var answers=[]
 let firstTime=true
 var ftime
+$("#branch").text($.session.get('branch'))
 $("#facName").val($.session.get("uid")+" "+$.session.get('facName'))
 
 $("#submit").on("click",function(e){
@@ -141,12 +142,24 @@ $("#sem").on("change",function(){
   "</li>")
 
   sem=parseInt($("#sem :selected").text())
-
-
+  branch=$.session.get("branch")
+  let dno=0
+  switch(branch){
+ 
+    case "CSE" : dno=1;break;
+    case "ECE" : dno=2;break;
+    case "EEE" : dno=3;break;
+    case "CIVIL" : dno=4;break;
+    case "MECH" : dno=5;break;
+    case "AIDS" : dno=6;break;
+    case "CSBS" : dno=7;break;
+  }
+  
 $.ajax({  
-  url:"http://localhost:8000/api/getAllSubjects/"+sem,
-  type:"GET",
+  url:"http://localhost:8000/api/getAllSubjects",
+  type:"POST",
   dataType:"json",
+  data:{sem:sem,dno:dno},
   success:function(result){
     $("#subjects").empty();
     for(let i=0;i<result.length;i++)

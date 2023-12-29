@@ -121,7 +121,7 @@ $("#send").on("click",function(){
   let recv="sfroddgit@git.edu";
   let subj="Hello World"
   let message="Going Great.. Let us meet up next week"
-
+  alert(message)
   //let recvemail=req.body.recvemail;
   //let subj=req.body.subj;
  // let msg=req.body.mesg;
@@ -138,10 +138,23 @@ $("#send").on("click",function(){
 
   })
 
-
-
 })
+let branch=$.session.get('branch')
+let br=""
+let uname=$.session.get('uname')
+switch(branch){
 
+   case "CSE": br=" Computer Science & Engineering";break;
+   case "ECE":br=" Electronics and Communication Engineering";break; 
+   case "EEE":br=" Electrical and Electronics and Engineering";break;
+   case "CIVIL": br=" Computer Science & Engineering";break;
+   case "MECH":br=" Electronics and Communication Engineering";break; 
+   case "AIDS":br=" Electrical and Electronics and Engineering";break;
+   case "CSBS":br=" Electrical and Electronics and Engineering";break
+   //To be completed..
+}
+$("#dhod").text(br)
+$("#hname").text(uname)
 //Rollback the pending list & Resolve
 
 $("#mentoringissues").on("click","button",function(e){

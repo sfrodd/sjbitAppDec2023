@@ -7,10 +7,15 @@ $("#semester").on("change",function(e){
 
 $("#acadyear1").on("change",function(e){
  e.preventDefault()   
-    let branch=1;
+    let branch=$.session.get('branch')
     let sem=$("#semester :selected").val()
     let acadyear=$("#acadyear1 :selected").val()
     console.log(acadyear)
+    let dno=0;
+    switch(branch){
+
+    }    
+
     $.ajax({
         url:"http://localhost:8000/api/getUSNs",
         type:"POST",

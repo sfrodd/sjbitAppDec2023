@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="../myStyles/beautify.css">
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/jquery.session/jquery.session.js"></script>
     <script src="../myScripts/showStudentData.js"></script>
 
     
@@ -20,8 +21,10 @@
     <form class="form-control">
      <div style="display:flex"> 
     <img style="border-radius:1rem;margin-right:40px;margin-left:20px" src="../images/Faculty/hm.jfif" alt="Hod"></img>  
-    <span style="display:inline-block;width:400px"><h5 style="color:darkcyan;margin-left:15px;">Dr. Halakarnimath, HoD CSE, SGBIT</h5></span>    
-    <img src="../sgbitlogo.jfif" style="margin-left:600px;border-radius:3rem" width="130px" hieght="80x" alt="logo">   
+    <!--span style="display:inline-block;width:1200px"-->
+    <h5 style="color:darkcyan;margin-left:15px;">Dr.<span style="margin:10px" id="hname"></span>, HoD <span style="margin:10px" id="dhod"></span> SGBIT</h5>
+    <!--/span-->    
+    <img src="../sgbitlogo.jfif" style="margin-left:190px;border-radius:3rem" width="130px" hieght="80x" alt="logo">   
     </div>
     <div style="display:flex">
     <input style="background-color:aqua;color:blue"  id="usn" type="text" class="form-control m-2 w-25" placeholder="Enter USN">

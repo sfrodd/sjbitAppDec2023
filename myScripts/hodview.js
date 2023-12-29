@@ -1,5 +1,12 @@
 $(function(){
 
+$("#back").on("click",function(e){
+
+  window.location="./HodDashBoard.html"
+
+})
+
+
 
 $("#fac").on("click","button",function(e){
     e.preventDefault()   
