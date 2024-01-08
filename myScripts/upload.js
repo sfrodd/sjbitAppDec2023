@@ -44,8 +44,29 @@ $("#addworc2020").on("click",function(e){
  
  })
 
+//BackButton
+ $("#backToFacUpload").on("click",function(e){
+  e.preventDefault()
+  window.location="../Components/Faculty.html"
+  })
+let dept=$.session.get('branch')
+let uid=$.session.get('uid')
+//alert(dept+"  "+uid)
+$("#ugdc").attr("onclick","window.location.href='../backEnd/Uploads/"+dept+"/Faculty/"+uid+"/Certificates/UG_DC.jpg'")
+$("#pgdc").attr("onclick","window.location.href='../backEnd/Uploads/"+dept+"/Faculty/"+uid+"/Certificates/PG_DC.jpg'")
+$("#phdc").attr("onclick","window.location.href='../backEnd/Uploads/"+dept+"/Faculty/"+uid+"/Certificates/PHD_DC.jpg'")
+$("#aptmt").attr("onclick","window.location.href='../backEnd/Uploads/"+dept+"/Faculty/"+uid+"/OfficeDocs/APTMT_LTR.pdf'")
+$("#jngltr").attr("onclick","window.location.href='../backEnd/Uploads/"+dept+"/Faculty/"+uid+"/OfficeDocs/JNG_LTR.pdf'")
+$("#promo").attr("onclick","window.location.href='../backEnd/Uploads/"+dept+"/Faculty/"+uid+"/OfficeDocs/PROMO_LTR.pdf'")
+$("#saslp").attr("onclick","window.location.href='../backEnd/Uploads/"+dept+"/Faculty/"+uid+"/OfficeDocs/SAL_SLP.pdf'")
 
+$("#aadhar").attr("onclick","window.location.href='../backEnd/Uploads/"+dept+"/Faculty/"+uid+"/Certificates/ADH_CD.jpg'")
+$("#pan").attr("onclick","window.location.href='../backEnd/Uploads/"+dept+"/Faculty/"+uid+"/Certificates/PN_CD.jpg'")
+$("#award").attr("onclick","window.location.href='../backEnd/Uploads/"+dept+"/Faculty/"+uid+"/Certificates/award.jpg'")
 //Add an Entry into journals table
+
+
+
 $("#addj").on("click",function(e){
   e.preventDefault();
 
@@ -71,6 +92,70 @@ $("#addj").on("click",function(e){
   })
 
 })
+
+$("#upload1").on("click",function(e){
+  e.preventDefault()
+  let docType=$("#doctype :selected").val()
+    var filename = $('#fileInput')[0].files[0].name;
+    var fileInput = $('#fileInput')[0].files[0];
+//    let ayear=$("#ayear :selected").val()
+  //  let ccode=$("#ccode :selected").val()
+
+  let pathName="uploads/CSE/Faculty/"+$.session.get('uid')  
+  switch(docType){
+       case "UG-Degree Certificate" :filename="UG_DC";pathName= pathName+"/Certificates/";break;
+       case "PG-Degree Certificate":filename="PG_DC"; pathName=pathName+"/Certificates/";break;
+       case "PhD-Degree Certificate":filename="PHD_DC"; pathName=pathName+"/Certificates/";break;
+       case "Adhaar-Card":filename="ADH_CD";pathName= pathName+"/Certificates/";break;
+       case "PAN-Card":filename="PN_CD";pathName= pathName+"/Certificates/";break;
+       case "Award-Certificate":filename="award";pathName= pathName+"/Certificates/";break;
+       case "Salary-Slip":filename="SAL_SLP"; pathName=pathName+"/OfficeDocs/";break;
+       case "Appointment-Letters":filename="APTMT_LTR"; pathName=pathName+"/OfficeDocs/";break;
+       case "Promotion-Letters":filename="PROMO_LTR"; pathName=pathName+"/OfficeDocs/";break;
+       case "Joining-Letter":filename="JNG_LTR"; pathName=pathName+"/OfficeDocs/";break;
+       case "Research-Publications":filename="RSRCH_PUB"; pathName=pathName+"/Publications/";break;
+       case "Workshop-Certificates":filename="WRKSHP_CRT"; pathName=pathName+"/ParticipationCertificates/"
+       case "Conference-Certificates":filename="CONF_CRT"; pathName=pathName+"/ParticiapationCertificates/"
+      }
+   alert(pathName) 
+   var newFilename =filename
+   var formData = new FormData();
+    formData.append('newFilename',newFilename)
+    formData.append('pathName',pathName)
+    formData.append('file', fileInput);
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:8000/api/FileUpload', // Replace with your server endpoint
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        console.log('File uploaded successfully:'+response);
+       // $('#fileuploadStatus').html(response);
+        //event.preventDefault()
+      },
+    //  error: function(error) {
+       // console.error('Error uploading file:', error);
+      //}
+    });
+   // i++
+   /* $("#vfiles").append("<li id='litem"+i+
+    "' class='list-group-item m-2'>"+i+". <span style='margin-left:10px;display:inline-block;width:150px'>"+fileType+"</span><span style='display:inline-block;width:250px'>"+
+    filename+
+    "</span><button id='view"+i+"' class='btn btn-warning m-2'>View</button></li>")
+    //alert("I am here "+fileType+ "  "+filename+" Appended..")
+*/
+})
+
+/*$("#vfiles").on("click","button",function(e){
+  e.preventDefault()
+  alert("hi..")
+  "window.location.href='../backEnd/uploads/Faculty/1020dcert.jpg'"
+
+})*/
+
+  
+
 /*
 $("#addj2021").on("click",function(e){
   e.preventDefault();
@@ -107,13 +192,6 @@ $("#backx").on("click",function(e){
 
 })
 
-$("#backHome2").on("click",function(e){
-e.preventDefault()
-
-window.location="../Components/Faculty.html"
-
-
-})
 
 
 //Add an entry to appropriate year
@@ -141,7 +219,7 @@ $("#addcorw").on("click",function(e){
     }
   })
     
-})
+
 /*
 $("#dcertandappoint").append("<li style='width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;'>"+
 "<span style='display:inline-block;width:220px'>"+
@@ -262,9 +340,6 @@ $("#dcertandappoint").on("click", "button", function(e){
       window.location.href="../backEnd/uploads/Faculty/"+fid+"pgdcert.jpg";
       else if(e.target.id=='phdc')
       window.location.href="../backEnd/uploads/Faculty/"+fid+"phdcert.jpg"; 
-       
-      
-
 });
 
       //alert("I am here")
@@ -283,11 +358,11 @@ $("#dcertandappoint").on("click", "button", function(e){
        })*/
     
 
-   // })
+ }) //End of Ready function
 
     
 
-$('#file').on('change', function () {
+/*$('#file').on('change', function () {
         var file = this.files[0];
         alert(file.name)
         if (file.size > 1024*1000) {
@@ -295,9 +370,9 @@ $('#file').on('change', function () {
         }
         // Also see .name, .type
       });
-
+*/
 //      $("#facId").val("1020")
-      $('#upload').on('click', function () {
+   /*   $('#upload').on('click', function () {
         $.ajax({
           // Your server script to process the upload
           url: "http://localhost:8000/api/uploadFile",
@@ -328,7 +403,7 @@ $('#file').on('change', function () {
           }
         });
       }); 
-
+*/
 })
 
 function formatDate1(myDate){

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"  href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../myScripts/predict.js">
+        
+    </script>
+</head>
+<body>
+    <h3 style="margin:10px;margin-left:500px;color:rebeccapurple;font-family:Arial, Helvetica, sans-serif ;">Predict Placement - Module</h3>
+    <div style="display:flex;flex-direction: column;margin:20px;padding:10px;border-radius:5px;border-style: solid;border-width: 5px;border-color: cadetblue;">
+    <div style="display:flex;flex-direction: row;">
+    <input type="text" id="usn" class="form-control w-25 m-2" placeholder="USN">
+    <span  style="display:inline-block;width:100px;color:orange;margin:10px">PUC-II Score</span><input type="text" id="pucScore" class="form-control m-2" style="width:120px;height:40px" m-2"  placeholder="PUC-II Score">
+    <span  style="display:inline-block;width:100px;color:orange;margin:10px">SSLC Score</span><input type="text" id="sslcScore" class="form-control m-2" style="width:120px;height:40px" placeholder="SSLC Score">
+    </div>
+    <h4 style="color:orangered;margin:10px">Academic Parameters</h4>
+
+    <div style="display:flex;flex-direction: row;">
+    <span style="display:inline-block;width:120px;margin:10px">First Year Score</span><input style="width:100px;height:40px" type="text"  id="firstYScore" class="form-control m-2 " placeholder="Score">
+    <span style="display:inline-block;width:130px;margin:10px">Second Year Score</span><input style="width:100px;height:40px" type="text" id="secondYScore" class="form-control m-2 " placeholder="Score">
+    <span style="display:inline-block;width:120px;margin:10px">Third Year Score</span><input style="width:100px;height:40px" type="text" id="thirdYScore" class="form-control m-2 " placeholder="Score">
+    </div>
+    <h4 style="color:blue;margin:10px">Activity Parameters</h4>
+    <div style="display: flex;flex-direction: row;">
+    <span  style="display:inline-block;width:200px;color:orange">Hackthon Participation<input type="checkbox" id="hackthon" style="margin-left:50px;margin-top:10px" class="form-check w-25" placeholder=""></span>
+    <span  style="display:inline-block;width:200px;color:orange">Codathon Participation<input type="checkbox" id="codathon" style="margin-left:50px;margin-top:10px" class="form-check  w-25" placeholder=""></span>
+    <span  style="display:inline-block;width:200px;color:orange">Startup Participation<input type="checkbox" id="startup" style="margin-left:50px;margin-top:10px" class="form-check  w-25" placeholder=""></span>
+    <span  style="display:inline-block;width:200px;color:orange">Orators Club<input type="checkbox" id="orator" style="margin-left:20px;margin-top:10px" class="form-check w-25" placeholder=""></span>
+    <span  style="display:inline-block;width:200px;color:orange">Project or Mini-project<input type="checkbox" id="projects" style="margin-left:50px;margin-top:10px" class="form-check w-25" placeholder=""></span>
+    </div>
+    <h4 style="color:blueviolet;margin:10px">Skill Test Scores</h4>
+    <div style="display:flex;flex-direction: row;">
+    <span style="display:inline-block;width:140px;margin:10px">Aptitute Test Score</span><input style="width:100px;height:40px" type="text" id="aptiScore" class="form-control m-2" placeholder="Score">
+    <span style="display:inline-block;width:140px;margin:10px">Coding Skill Score</span><input style="width:100px;height:40px" type="text" id="codingScore" class="form-control m-2" placeholder="Score">
+    </div>
+    <h4 style="color:tomato;margin:10px">Fundamental Subject Scores</h4>
+    <div style="display:flex;flex-direction: row;"> 
+    <span style="display:inline-block;width:90px;margin:10px">DSA Score</span><input type="text" id="dsaScore" class="form-control m-2" style="width:60px;height:40px" placeholder="DSA">
+    <span style="display:inline-block;width:90px;margin:10px">DBMS Score</span><input type="text" id="dbScore" class="form-control m-2" style="width:60px;height:40px" placeholder="DBMS">
+    <span style="display:inline-block;width:90px;margin:10px">OS Score</span><input type="text" id="osScore" class="form-control m-2" style="width:60px;height:40px" placeholder="OS">
+    <span style="display:inline-block;width:90px;margin:10px">OOPS Score</span><input type="text" id="oopScore" class="form-control m-2" style="width:60px;height:40px" placeholder="OOPS">
+    <span style="display:inline-block;width:90px;margin:10px">CN Score</span><input type="text" id="cnScore" class="form-control m-2" style="width:60px;height:40px" placeholder="CN">
+    <span style="display:inline-block;width:90px;margin:10px">SE Score</span><input type="text" id="seScore" class="form-control m-2" style="width:60px;height:40px" placeholder="SE">
+    </div>
+    <div style="display:flex;flex-direction: row;"> 
+    <button id="checkResult" style="width:100px" class="btn btn-primary m-2">Predict</button>
+    <p style="color:goldenrod;margin:20px" id="predictionResult">Prediction Result</p>
+    </div>
+    </div>
+</body>
+</html>

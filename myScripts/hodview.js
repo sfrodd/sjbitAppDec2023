@@ -14,19 +14,19 @@ $("#fac").on("click","button",function(e){
     let id=$(this).attr("id")
     idx=id.substring(id.length-1);
     let fid=$("#fid"+idx).text()
-   let subject=$("#subjects :selected").text()
-
+   let subject=$("#subjects :selected").val()
+  let acadyear=$("#acadyear :selected").val()
    //Need to be fixed.:
    let div=$("#divi"+idx).find(":selected").val()
    let scode=subject.substring(0,subject.indexOf(' '))
-   //alert(subject+" is alloted to"+fid +" for "+div+" division")
+   alert(subject+" is alloted to"+fid +" for "+div+" division"+" acadyear"+acadyear)
    
    $.ajax({
      url:"http://localhost:8000/api/checkifAlreadyExists/",
      type:"POST",
      dataType:"json",
      async:false,
-     data:{"scode":scode,"fid":fid,"acadyear":"2022-23","division":div},
+     data:{"scode":scode,"fid":fid,"acadyear":"2022-23","division":div,acadyear:acadyear},
      success:function(result){
        console.log(result);
      //  alert(result.length)
@@ -39,7 +39,7 @@ $("#fac").on("click","button",function(e){
     type:"POST",
     dataType:"json",
     async:false,
-    data:{"scode":scode,"fid":fid,"acadyear":"2022-23","division":div},
+    data:{"scode":scode,"fid":fid,"acadyear":acadyear,"division":div},
     success:function(result){
 
       console.log(result);
@@ -103,7 +103,7 @@ $("#sem").on("change",function(){
 $("#subjects").on("change",function(e){
     e.preventDefault();
     let subject= $("#subjects :selected").text().trim();
-
+    let acadyear=$("#acadyear :selected").val()
     let scode=subject.substring(0,subject.indexOf(' '))
     //On Subject selection list faculty who have opted this subject
     $.ajax({

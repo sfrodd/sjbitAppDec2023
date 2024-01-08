@@ -2,10 +2,15 @@ $(function(){
     $("#backz").on("click",function(e){
         window.location="./deptadminDashBoard.html"
     })
+
+       
+$("#transfer").on("click",function(e){
+  e.preventDefault()
+  alert("Assignment Done..!!!") 
+})    
+
 $("#dname").on("change",function(e){
 e.preventDefault();
-
-
 let scheme=$("#scheme :selected").val();
 let sem=$("#sem :selected").val();
 let dname=$("#dname :selected").val()
@@ -22,16 +27,12 @@ $.ajax({
     else{
       for(let i=0;i<result.length;i++)
         $("#subjects").append("<option>"+result[i].scode+"  "+result[i].sname+"</option>")
-     alert("Assignment Done..!!!") 
+    
     }
 
     }
 })
 
-
 })
-
-
-
 
 })

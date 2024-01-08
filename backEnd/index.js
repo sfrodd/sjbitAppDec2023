@@ -8,6 +8,7 @@ const fs=require('fs')
 const path=require('path')
 const App=new express();
 const subjectAllot=require('./routes/subjectAllot')
+const { exec } = require('child_process');
 //Download code
 
 
@@ -124,7 +125,7 @@ App.get("/api/download/:filename", (req, resp)=>{
 
 
 //Upload Code
-var storage =   multer.diskStorage({  
+/*var storage =   multer.diskStorage({  
     destination: function (req, file, callback) {  
       callback(null, './uploads/Faculty');  
     },  
@@ -134,7 +135,6 @@ var storage =   multer.diskStorage({
   });  
 
   var upload = multer({ storage : storage}).single('myfile');  
-
   App.post('/api/uploadFile',function(req,res){ 
     //console.log(req.body.fid)
    // console.log(subFolder);
@@ -146,7 +146,7 @@ var storage =   multer.diskStorage({
     });  
 });  
 
-
+*/
 
 App.listen(8000,function(err){
 if(err) console.log(err)
@@ -277,14 +277,171 @@ App.post("/api/addworkshopconf",(req,resp)=>{
     })
     
 })
+
+App.post("/api/insertFirstYearStudentPUCData",(req,resp)=>{
+    let instID=req.body.instID
+    let title=req.body.title
+    let regNum=req.body.regNum
+    let pucScore=parseFloat(req.body.pucScore)
+    let collegeName=req.body.collegeName
+    let passingyear=req.body.passingyear
+    let imageUrl=req.body.imageUrl
+    let state=req.body.state
+    let data=[]
+    data.push(instID);data.push(title);data.push(regNum);data.push(pucScore)
+    data.push(collegeName);data.push(passingyear);data.push(imageUrl)
+    data.push(state)   
+    myCon.query("insert into studentacademic(instID,certificate_title,registrationNum,"+
+    "aggregatePercentage,schoolName,passingyear,state) values(?,?,?,?,?,?,?)",data,(error,result)=>{
+      if (error) {
+          if (error.code === 'ER_DUP_ENTRY') {
+              // Handle primary key constraint violation
+              return resp.status(400).json({ error: 'Duplicate entry. Primary key constraint violated.' });
+          } else {
+              // Handle other database errors
+              console.error(error);
+              return resp.status(500).json({ error: 'Internal server error.' });
+          }
+      }
+      // If no errors, send a success response
+      resp.status(200).json({ message: 'Data successfully stored.' });
+}) //Query end
+}) //REST API End
+
+/*mLearningMethod:mLearningMethod, ssl7cScore:sslcScore,pucScore:pucScore,
+dsaScore:dsaScore,dbScore:dbScore,osScore:osScore,
+            oopScore:oopScore,seScore:seScore,cnScore:cnScore,
+            hackathonStatus:hackathonStatus,codathonStatus:codathonStatus,
+            oratorStatus:oratorStatus,startupStatus:startupStatus,projectStatus:projectStatus*/
+
+App.post("/api/checkResult",(req,resp)=>{
+    //const{mlm,ss,ps,ds,db,os,oop,se,cn,h,c,o,st,p}=req.body
+    let mlm=req.body.mLearningMethod
+    let sslc=req.body.sslcScore 
+    let puc=req.body.pucScore
+    let fy=req.body.firstYScore 
+    let sy=req.body.secondYScore 
+    let ty=req.body.thirdYScore
+   // console.log(sslc,puc,fy,sy,ty)
+    let cdng=req.body.codingScore
+    let dsa=req.body.dsaScore 
+    let db=req.body.dbScore 
+    let os=req.body.osScore 
+    let oop=req.body.oopScore 
+    let se=req.body.seScore 
+    let cn=req.body.cnScore  
+    let apti=req.body.aptiScore
+    let hack=req.body.hackathonStatus 
+    let coda=req.body.codathonStatus
+    let ora=req.body.oratorStatus
+    let sta=req.body.startupStatus 
+    let proj=req.body.projectStatus  
+    let data=[]
+    data.push(db);
+    data.push(dsa);data.push(oop);data.push(os);data.push(cn);
+    data.push(se);data.push(apti);data.push(hack)
+    data.push(coda);data.push(ora);data.push(sta);
+    data.push(proj)
+    console.log(data)
+    const pythonScriptPath = 'e:\\sjbit\\python\\baysian_predictor.py';
+   // console.log(mlm)
+    exec(`python ${pythonScriptPath} ${sslc} ${puc} ${fy} ${sy} ${ty} ${apti} ${cdng} ${dsa} ${db} ${os} ${oop} ${cn} ${se} ${hack} ${coda} ${sta} ${ora} ${proj}`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error executing Python script: ${error}`);
+            return;
+        } 
+        console.log(`Python script executed successfully. Result: ${stdout}`);
+        resp.json({ result:stdout });
+    });
+
+
+
+
+
+
+})
+
+
+App.post("/api/insertFirstYearStudentSSLCData",(req,resp)=>{
+    let instID=req.body.instID
+    let title=req.body.title
+    let regNum=req.body.regNum
+    let sslcScore=parseFloat(req.body.sslcScore)
+    let schoolName=req.body.schoolName
+    let passingyear=req.body.passingyear
+    let imageUrl=req.body.imageUrl
+    let state=req.body.state
+    let data=[]
+    data.push(instID);data.push(title);data.push(regNum);data.push(sslcScore)
+    data.push(schoolName);data.push(passingyear);data.push(imageUrl)
+    data.push(state)   
+    myCon.query("insert into studentacademic(instID,certificate_title,registrationNum,"+
+    "aggregatePercentage,schoolName,passingyear,state) values(?,?,?,?,?,?,?)",data,(error,result)=>{
+      if (error) {
+          if (error.code === 'ER_DUP_ENTRY') {
+              // Handle primary key constraint violation
+              return resp.status(400).json({ error: 'Duplicate entry. Primary key constraint violated.' });
+          } else {
+              // Handle other database errors
+              console.error(error);
+              return resp.status(500).json({ error: 'Internal server error.' });
+          }
+      }
+      // If no errors, send a success response
+      resp.status(200).json({ message: 'Data successfully stored.' });
+}) //Query end
+}) //REST API End
+
+App.post("/api/insertFirstYearStudentData",(req,resp)=>{
+  let instID=req.body.instID
+  let fname=req.body.fname
+  let lname=req.body.lname
+  let gender=req.body.gender
+  let email=req.body.email
+  let phone=req.body.phone
+  let branch=1//req.body.branch
+  let data=[]
+  data.push(instID);data.push(fname);data.push(lname);data.push(gender)
+  data.push(email);data.push(phone);data.push(branch)
+
+  myCon.query("insert into student(usn,fname,lname,gender,emailid,cellNum,dno) values(?,?,?,?,?,?,?)",data,(error,result)=>{
+    if (error) {
+        if (error.code === 'ER_DUP_ENTRY') {
+            // Handle primary key constraint violation
+            return resp.status(400).json({ error: 'Duplicate entry. Primary key constraint violated.' });
+        } else {
+            // Handle other database errors
+            console.error(error);
+            return resp.status(500).json({ error: 'Internal server error.' });
+        }
+    }
+
+    // If no errors, send a success response
+    resp.status(200).json({ message: 'Data successfully stored.' });
+});
+
     
+    
+    /*if(err) {console.log(err)
+    resp.send(err)
+    }
+    else{
+    console.log(result.affectedRows+" row inserted..")
+    resp.send(result)
+    }*/
+  })
+
+
+
+
+
 App.get("/api/getUser/:user",(req,resp)=>{
 const credits=[]
 var uname=req.params.user;
 //var pwd=req.body.password;
 credits.push(uname)
 //credits.push(pwd)
-myCon.query("select l.uname,l.uid as uid ,pwd,f.branch from loginpwds l, faculty f where uname=? and l.uid=f.fid",credits,function(err,result){
+myCon.query("select l.uname,l.uid as uid, pwd,f.branch from loginpwds l, faculty f where uname=? and l.uid=f.fid",credits,function(err,result){
     if(err) console.log(err)
     else{
     resp.send(result);
@@ -302,7 +459,7 @@ App.post("/api/addFaculty",(req,resp)=>{
     let branch=req.body.branch
     let emailId=req.body.emailId
     let cellNum=req.body.cellNum
-    let uname=req.body.username
+    let uid=req.body.uid
     let data=[]
     let dno=0
     switch(branch)
@@ -315,6 +472,8 @@ App.post("/api/addFaculty",(req,resp)=>{
         case "AIDS":dno=6;break;
         case "CSBS":dno=7;break;
      }
+
+
      data.push(dno);data.push(fname);data.push(lname);data.push(dob);data.push(designation)
      data.push(gender);data.push(doj);data.push(branch);data.push(emailId)
      data.push(cellNum); 
@@ -326,10 +485,45 @@ App.post("/api/addFaculty",(req,resp)=>{
     })
     myCon.commit();
     var fid=0
-    myCon.query("select max(fid) as maxfid from faculty",(err,result)=>{
+    myCon.query("select max(fid) as maxfid,dno from faculty",(err,result)=>{
     if(err) console.log(err)
     else{
     console.log("MaxFid Sent..")
+    let uid=result[0].maxfid
+    const folderName = 'Uploads/'+branch+"/Faculty/"+uid+"/";
+    console.log(folderName)
+    try {
+        if (!fs.existsSync(folderName)) {
+          fs.mkdirSync(folderName);
+          let iapapers=folderName+"/IAPapers/"
+          fs.mkdirSync(iapapers)
+          let evalScheme=folderName+"/IASchemes/"
+          fs.mkdirSync(evalScheme)
+          let assignments=folderName+"/Assignments/"
+          fs.mkdirSync(assignments)
+          let calTT=folderName+"/CalEventsAndTT/"
+          fs.mkdirSync(calTT)
+          let facFB=folderName+"/FacultyFB/"
+          fs.mkdirSync(facFB)
+          let cendSurvey=folderName+"/CourseEndSurvey/"
+          fs.mkdirSync(cendSurvey)
+          let lessinplan=folderName+"/LessonPlan/"
+          fs.mkdirSync(lessinplan)
+          let pub=folderName+"/Publications/"
+          fs.mkdirSync(pub)
+          let cert=folderName+"/Certificates/"
+          fs.mkdirSync(cert)
+          let ap=folderName+"/AadharPAN/"
+          fs.mkdirSync(ap)
+          let od=folderName+"/OfficeDocs/"
+          fs.mkdirSync(od)
+          let pc=folderName+"/ParticipationCertificates/"
+          fs.mkdirSync(pc)
+          //fs.close(0)
+        }
+      } catch (err) {
+        console.error(err);
+      }
     resp.send(result)
     }
 })
@@ -338,21 +532,67 @@ App.post("/api/addFaculty",(req,resp)=>{
 
 App.post("/api/insertUser",(req,resp)=>{
     let uname=req.body.username
-    let fid=req.body.fid 
-    console.log(fid)
+    let fid=parseInt(req.body.fid) 
+    let dno=parseInt(req.body.dno)
+    let currentDate=new Date()
+    let acadyear=currentDate.getFullYear()
+    //let year=parseInt(acadyear.sub(2,4))+1
+    acadyear=acadyear+"-24"
+    console.log(acadyear+fid)
     let data1=[]
     data1.push(fid);data1.push(uname);
     data1.push("abc123^")
     data1.push("user");data1.push("faculty") 
+    let datax=[]
+    datax.push(fid);datax.push(acadyear);datax.push(dno)
     myCon.query("insert into loginpwds(uid,uname,pwd,type,category) values(?,?,?,?,?)",data1,(err,result)=>{
         if(err) console.log(err)
         else {
-    console.log("Insertion succesful..")
+            myCon.query("insert into facultyleave(fid,acadyear,dno) values(?,?,?)",datax,(err,result)=>{
+                if(err) console.log(err)
+            })    
+           
+        console.log("Insertion succesful..")
         resp.send(result)
         
     }
     })
 })
+
+//File Upload... Using Multer
+var pathName=""
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+       let pathName=req.body.pathName;
+      console.log("Storage "+pathName)  
+      cb(null, pathName); // Uploads will be stored in the 'uploads' directory
+    },
+    filename: function (req, file, cb) {
+        //const courseCode =req.body.newFilename
+     //   console.log(courseCode)
+       // console.log(file)
+
+        var newFilename = req.body.newFilename || file.originalname;
+        const originalname = path.parse(file.originalname).name;
+        const extension = path.extname(file.originalname); 
+        newFilename = `${newFilename}${extension}`;
+        cb(null, newFilename);
+    }
+  });
+  
+  const upload = multer({ storage: storage });
+
+  // Handle file upload
+  App.post('/api/FileUpload', upload.single('file'), (req, res) => {
+    pathName=req.body.pathName
+//    console.log("REST API: " +req.body.pathName) 
+  //  console.log('File uploaded:', req.file);
+    res.send("<h1>File uploaded successfully!</h1>");
+  });
+
+
+
+
 
 App.post("/api/getAllStudents",(req,resp)=>{
     let fname=req.body.fname
@@ -778,8 +1018,8 @@ App.post("/api/checkifAlreadyExists",(req,resp)=>{
     let data=[]
 
     data.push(fid);data.push(scode);data.push(acadyear);data.push(div)
-    let sql="select *  from facultysubjects where fid=? and scode=? and Division=?"
-    myCon.query(sql,[fid,scode,div],function(err,result){
+    let sql="select *  from facultysubjects where fid=? and scode=? and Division=? and acadyear=?"
+    myCon.query(sql,[fid,scode,div,acadyear],function(err,result){
     
         if(err) console.log(err);
         else {

@@ -2,10 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/jquery.session/jquery.session.js"></script>
+    <script src="../myScripts/uploadCFiles.js"></script>
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 </head>
 <body>
-    <h3>Faculty Course Files -- To be Implemented..</h3>
+    <h3 style="color:cornflowerblue;margin:20px"><span style="margin:10px" id="fname"></span>- Course Files<button style="margin-left:912px" id="back" class="btn btn-dark">Back</button></h3>
+    <div style="display:flex;flex-direction: row; ">
+        <select id="ayear" title="foo" class="form-select m-2 w-50">
+            <option selected>Choose AcadYear</option>
+            <option>2020-21</option>
+            <option>2021-22</option>
+            <option>2022-23</option>
+            <option>2023-24</option>
+            <option>2024-25</option>
+         </select>  
+         <select id="ccode" title="foo" class="form-select m-2 w-50">
+            <option selected>Choose CourseCode</option>
+            <option>18CS32</option>
+            <option>18CS35</option>
+            <option>20CS57</option>
+            <option>21CS33</option>
+         </select>  
+        <select id="cfile" title="foo" class="form-select m-2 w-50">
+            <option selected>Choose File</option>
+            <option>Calender of Events</option>
+            <option>Time Table</option>
+            <option>Lession Plan</option>
+            <option>IA QPaper - I</option>
+            <option>IA Scheme - I</option>
+            <option>IA QPaper - II</option>
+            <option>IA Scheme - II</option>
+            <option>IA QPaper - III</option>
+            <option>IA Scheme - III</option>
+            <option>Assignment - I</option>
+            <option>Assignment - II</option>
+            <option>CourseEnd Survey</option>
+            <option>Faculty Feedback</option>
+            <option>PO Attainment</option>
+        </select>
+        <input type="file" id="fileInput" value="file" name="file" class="form-control m-2 w-50" placeholder="Select File">
+        <button id="upload" class="btn btn-primary m-2">Upload</button>
+        
+    </div>
+    <p id="fileuploadStatus"></p>
+    <ul id="vfiles" class="list-group m-2 w-75">
+
+    </ul>
+    <div id="pdfViewer"></div> 
 </body>
 </html>

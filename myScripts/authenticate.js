@@ -40,14 +40,15 @@ $("#log").on("click",function(event){
           usrName=result[0].uname;
           category=result[0].category
           branch=result[0].branch
-          
+          $.session.set('uid',uid)
+          $.session.set('branch',branch)              
           if(login=="Admin" && passWord==pwd){
               $("#msg").text("Login Succesful..")
               $.session.set('logged',true)
               $.session.set('uname',usrName)
               $.session.set('facName',login)
               $.session.set('uid',uid);
-              window.location="../Components/Admin/adminDashBoard.html";
+              window.location="../Components/Admin/studentAdmin.html";
           }
           else
           if(login=="hodcse" || login=="hodec" && passWord==pwd){

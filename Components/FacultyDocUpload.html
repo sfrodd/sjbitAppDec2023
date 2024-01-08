@@ -28,6 +28,7 @@
           <option>PG-Degree Certificate</option>
           <option>PhD-Degree Certificate</option>
           <option>Appointment-Letters</option>
+          <option>Joining-Letter</option>
           <option>Promotion-Letters</option>
           <option>Salary-Slip</option>
           <option>Adhaar-Card</option>
@@ -42,9 +43,9 @@
          <div style="margin-left:10px">
         <form id="uploadForm1" enctype="multipart/form-data" action="http://localhost:8000/api/uploadFile" method="post">
         <div style="display:flex;justify-content: flex-start;gap:10px">
-        <input style="width:140px;height:38px" class="form-control w-75 m-1" id="file" type="file" name="myfile"></input>
+        <input style="width:140px;height:38px" class="form-control w-75 m-1" id="fileInput" type="file" name="myfile"></input>
         <button type="submit" id="upload1" style="width:160px;height:35px;" class="btn btn-primary my-1 mx-2">Upload</button>
-        <button type="submit" id="backHome2" style="width:160px;height:35px;" class="btn btn-dark my-1 mx-2">Back</button>
+        <button  id="backToFacUpload" style="width:160px;height:35px;" class="btn btn-dark my-1 mx-2">Back</button>
         </div>
         <!--span style="height:50px" id="status"><progress></progress></span-->
       </form>
@@ -53,20 +54,20 @@
       <div style="display:flex;gap:20px;width:1100px">
         <div> 
       <ul id="dcertandappoint" style="list-style-type:none;width:600px" class="list-group">
-        <li style="width:200px;background-color:yellow;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="color:red;padding:5px;display:inline-block;width:120px;height:40px">Qualifications</span></li>
-         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020dcert.jpg' download="UGCertificate" target="_blank">B.E. Degree Certificate</a></span><button onclick="window.location.href='../backEnd/uploads/Faculty/1020dcert.jpg'" id="ugdc" class="btn btn-success mx-8 my-2">View</button></li>
-         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020pgdcert.jpg' download="PGCertificate" target="_blank">M.Tech. Degree Certificate</a></span><button onclick="window.location.href='../backEnd/uploads/Faculty/1020pgdcert.jpg'" id="pgdc" class="btn btn-success mx-8 my-2">View</button></li>
-         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020phdcert.jpg' download="PhDCertificate" target="_blank">Ph.D. Degree Certificate</a></span><button id="phdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020phdcert.jpg'" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:200px;background-color:yellow;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="color:red;padding:5px;display:inline-block;width:120px;height:40px">Qualifications</span></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/CSE/Faculty/1123/Certificates/UG_DC.jpg' download="UGCertificate" target="_blank">B.E. Degree Certificate</a></span><button onclick="" id="ugdc" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/CSE/Faculty/1123/Certificates/UG_DC.jpg' download="PGCertificate" target="_blank">M.Tech. Degree Certificate</a></span><button onclick="" id="pgdc" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020phdcert.jpg' download="PhDCertificate" target="_blank">Ph.D. Degree Certificate</a></span><button id="phdc" onclick="" class="btn btn-success mx-8 my-2">View</button></li>
         
          <li style="width:350px;background-color:yellow;padding-left:15px;margin-top:10px;border-radius:0.5rem;"><span style="color:red;padding:5px;display:inline-block;width:300px;height:40px">Appointmemnt/Promo/Salary Docs</span></li>
-         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020appointment.png' download="Appointment" target="_blank">Appointment Letter</a></span><button id="ugdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020appointment.png'" class="btn btn-success mx-8 my-2">View</button></li>
-         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020joing.jpg' download="Joining" target="_blank">Joing Letter</a></span><button id="pgdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020joining.jpg'" class="btn btn-success mx-8 my-2">View</button></li>
-         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020promo.png' download="Promotion" target="_blank">Promotion Letter</a></span><button id="phdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020dcert.png'" class="btn btn-success mx-8 my-2">View</button></li>
-         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020salary.png' download="SalarySlip" target="_blank">Salary Slip</a></span><button id="phdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020dcert.png'" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020appointment.png' download="Appointment" target="_blank">Appointment Letter</a></span><button id="aptmt" onclick="" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020joing.jpg' download="Joining" target="_blank">Joing Letter</a></span><button id="jngltr" onclick="" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020promo.png' download="Promotion" target="_blank">Promotion Letter</a></span><button id="promo" onclick="" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020salary.png' download="SalarySlip" target="_blank">Salary Slip</a></span><button id="saslp" onclick="" class="btn btn-success mx-8 my-2">View</button></li>
 
-         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020joing.jpg' download="Joining" target="_blank">Adhaar Card</a></span><button id="pgdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020joining.jpg'" class="btn btn-success mx-8 my-2">View</button></li>
-         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020promo.png' download="Promotion" target="_blank">PAN Card</a></span><button id="phdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020dcert.png'" class="btn btn-success mx-8 my-2">View</button></li>
-         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020salary.png' download="SalarySlip" target="_blank">Award Certifciate</a></span><button id="phdc" onclick="window.location.href='../backEnd/uploads/Faculty/1020dcert.png'" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020joing.jpg' download="Joining" target="_blank">Adhaar Card</a></span><button id="aadhar" onclick="" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020promo.png' download="Promotion" target="_blank">PAN Card</a></span><button id="pan" onclick="" class="btn btn-success mx-8 my-2">View</button></li>
+         <li style="width:610px;background-color:white;padding-left:15px;margin-top:4px;border-radius:0.5rem;"><span style="display:inline-block;width:220px"><a id="degree" href='../backEnd/uploads/Faculty/1020salary.png' download="SalarySlip" target="_blank">Award Certifciate</a></span><button id="award" onclick="" class="btn btn-success mx-8 my-2">View</button></li>
 
       </ul>
       </div>
